@@ -63,7 +63,35 @@ const UNITS = [
     { id: 4, title: "System Security & Hardening", subtitle: "Foundational Research", labs: [] },
     { id: 5, title: "Data Representation & Cryptography Concepts", subtitle: "Foundational Research", labs: [] },
     { id: 6, title: "Advanced Command Line & Scripting", subtitle: "Foundational Research", labs: [] },
-    { id: 7, title: "Networking Fundamentals", subtitle: "Foundational Research", labs: [] },
+    {
+        id: 7,
+        title: "Networking Fundamentals",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "Installing PC Components",
+                id: "5.1.1",
+                url: "labs/u07/installing-pc-components.html",
+                icon: "cpu",
+                desc: "Identify and install key hardware components on a Desktop computer motherboard."
+            },
+            {
+                title: "ARP with Wireshark",
+                id: "5.2.2",
+                url: "labs/u07/arp-wireshark.html",
+                icon: "activity",
+                desc: "Use Wireshark to capture and analyze ARP packets and understand network resolution."
+            },
+            {
+                title: "Packet Analysis",
+                id: "5.3.2",
+                url: "labs/u07/packet-analysis.html",
+                icon: "file-search",
+                desc: "Deep dive into PCAP analysis to find credentials, malicious commands, and hidden flags."
+            }
+        ]
+    },
     {
         id: 8,
         title: "Ethics & Reconnaissance",

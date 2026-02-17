@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARP with Wireshark</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>ARP with Wireshark</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Learn to use Wireshark for packet capture and traffic analysis, focusing on ARP (Address Resolution
+                Protocol).
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali and Windows 7 VMs.</label></li>
+                <li><label><input type="checkbox"> <strong>Windows 7:</strong> Search for "Network and Sharing Center",
+                        ensure network is set to <strong>Home</strong> network.</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Gathering Info</h2>
+
+            <h3>On Windows 7:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Open Command Prompt (<code>cmd</code>).</label></li>
+                <li><label><input type="checkbox"> Type <code>ipconfig</code>.</label></li>
+            </ol>
+            <div class="question-block">
+                <label>What is the IPv4 address of this computer?</label>
+                <input type="text">
+            </div>
+
+            <h3>On Kali:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Open Terminal.</label></li>
+                <li><label><input type="checkbox"> Type <code>ifconfig</code>.</label></li>
+            </ol>
+            <div class="question-block">
+                <label>What is the MAC address (ether)?</label>
+                <input type="text">
+                <label>What is the IPv4 address (inet)?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Capturing ARP</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In Kali Terminal, type <code>sudo wireshark</code>.</label></li>
+                <li><label><input type="checkbox"> Click the blue fin to start capturing.</label></li>
+                <li><label><input type="checkbox"> Open a new Terminal window (leave Wireshark running).</label></li>
+                <li><label><input type="checkbox"> Ping your Windows 7 IP: <code>ping -c 4 [Windows_IP]</code></label>
+                </li>
+                <li><label><input type="checkbox"> Stop Wireshark capture (Red square).</label></li>
+                <li><label><input type="checkbox"> Filter for ARP packets (Type <code>arp</code> in filter bar or scroll
+                        to top).</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>Look for the request "Who has [Windows IP]? Tell [Kali IP]". What is the MAC address of the
+                    replying device?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of Wireshark showing the ARP packet details</p>
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3: The ARP Table</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In Kali Terminal, type <code>arp -a</code>.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>What is listed as the Physical Address (MAC) for the Windows machine?</label>
+                <input type="text">
+                <label>Does this match the Wireshark capture?</label>
+                <input type="text">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Clear the table: <code>sudo ip -s -s neigh flush all</code></label>
+                </li>
+                <li><label><input type="checkbox"> Verify it's cleared: <code>arp -a</code></label></li>
+            </ol>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your ARP table (before or after clearing)</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>
