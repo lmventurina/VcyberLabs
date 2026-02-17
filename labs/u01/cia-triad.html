@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIA Triad & Authentication</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>CIA Triad & Authentication</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Understand the core principles of information security: Confidentiality, Integrity, and Availability
+                (The CIA Triad), and explore methods of Authentication.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 1: The CIA Triad</h2>
+            <div class="instruction-text">
+                For each scenario, identify which part of the CIA Triad is being violated or protected.
+            </div>
+
+            <div class="question-block">
+                <h3>Scenario 1</h3>
+                <p>A hacker changes the grades in the student database from a 'C' to an 'A'.</p>
+                <label><input type="radio" name="cia1" value="C"> Confidentiality</label>
+                <label><input type="radio" name="cia1" value="I"> Integrity</label>
+                <label><input type="radio" name="cia1" value="A"> Availability</label>
+            </div>
+
+            <div class="question-block">
+                <h3>Scenario 2</h3>
+                <p>A Distributed Denial of Service (DDoS) attack takes down the school website during finals week.</p>
+                <label><input type="radio" name="cia2" value="C"> Confidentiality</label>
+                <label><input type="radio" name="cia2" value="I"> Integrity</label>
+                <label><input type="radio" name="cia2" value="A"> Availability</label>
+            </div>
+
+            <div class="question-block">
+                <h3>Scenario 3</h3>
+                <p>A student reads a teacher's private email containing exam questions.</p>
+                <label><input type="radio" name="cia3" value="C"> Confidentiality</label>
+                <label><input type="radio" name="cia3" value="I"> Integrity</label>
+                <label><input type="radio" name="cia3" value="A"> Availability</label>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Authentication Factors</h2>
+            <div class="instruction-text">
+                Classify the following authentication methods into the three categories:
+                <strong>Something you Know</strong>, <strong>Something you Have</strong>, or <strong>Something you
+                    Are</strong>.
+            </div>
+
+            <div class="question-block">
+                <label>Password:</label> <input type="text" placeholder="Type category...">
+                <label>Fingerprint Scan:</label> <input type="text" placeholder="Type category...">
+                <label>Smart Card / ID Badge:</label> <input type="text" placeholder="Type category...">
+                <label>PIN Code:</label> <input type="text" placeholder="Type category...">
+                <label>Face ID:</label> <input type="text" placeholder="Type category...">
+                <label>Google Authenticator App:</label> <input type="text" placeholder="Type category...">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 3: Reflection</h2>
+            <div class="question-block">
+                <label>Why is "Two-Factor Authentication" (2FA) more secure than a password alone?</label>
+                <textarea rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Linux CLI</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Advanced Linux CLI</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Learn and practice advanced commands used in the Linux Operating System, including grep, paths, and
+                redirection.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali in the CYBER.ORG Range.</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1: Grep -->
+        <div class="section">
+            <h2>Part 1: Searching with grep</h2>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Navigate to folder:
+                        <code>cd ~/Documents/Unit_3/GreatBooks/</code></label></li>
+            </ul>
+
+            <h3>Case Sensitivity</h3>
+            <div class="question-block">
+                <label>1. Count lines for <code>grep -i apparently sherlock.txt</code>:</label>
+                <input type="text">
+            </div>
+
+            <h3>Phrases</h3>
+            <div class="question-block">
+                <label>2. Count lines for <code>grep -i 'not guilty' sherlock.txt</code>:</label>
+                <input type="text">
+            </div>
+
+            <h3>Options (-v, -n, -c)</h3>
+            <div class="question-block">
+                <label>3. Count lines WITHOUT 'to' or 'To' (<code>grep -ivc to sherlock.txt</code>):</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <!-- Part 2: Redirecting Output -->
+        <div class="section">
+            <h2>Part 2: Redirecting Output ( > and >> )</h2>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Make sure you are in
+                        <code>~/Documents/Unit_3/GreatBooks</code></label></li>
+                <li><label><input type="checkbox"> Create FileList: <code>ls > Filelist.txt</code></label></li>
+                <li><label><input type="checkbox"> View it: <code>less Filelist.txt</code> (Press 'q' to exit)</label>
+                </li>
+            </ul>
+
+            <div class="question-block">
+                <label>How many items are listed and what is the name of the last file listed?</label>
+                <input type="text">
+            </div>
+
+            <h3>Appending Strings</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> View files: <code>cat fruit.txt</code> and
+                        <code>cat animals.txt</code></label></li>
+                <li><label><input type="checkbox"> Append animals to fruit:
+                        <code>cat animals.txt >> fruit.txt</code></label></li>
+                <li><label><input type="checkbox"> Check result: <code>cat fruit.txt</code></label></li>
+            </ul>
+
+            <div class="question-block">
+                <label>What are the first and last words in fruit.txt now?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <!-- Part 3: Misc Commands -->
+        <div class="section">
+            <h2>Part 3: Sort, Wildcards, and Pipes</h2>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Sort animals: <code>sort animals.txt</code></label></li>
+            </ul>
+            <div class="question-block">
+                <label>What are the first and last words in animals.txt when sorted?</label>
+                <input type="text">
+            </div>
+
+            <h3>Piping (|)</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> List all files including hidden, find 'txt':
+                        <code>ls -a | grep txt</code></label></li>
+            </ul>
+            <div class="question-block">
+                <label>How many files are listed and what is the name of the hidden file?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your terminal showing the piped command output</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

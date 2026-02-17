@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganography CTF</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Steganography CTF</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Apply steganography tools (Okteta, Exiftool, Binwalk, Steghide) to solve challenges and find hidden
+                flags.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali in the CYBER.ORG Range.</label></li>
+                <li><label><input type="checkbox"> Navigate to: <code>~/CourseFiles/IntroCybersecurity</code></label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Challenges</h2>
+
+            <!-- Challenge 1 -->
+            <div class="question-block">
+                <h3>1. Text hidden in picture (CSA_ForL2C1.png)</h3>
+                <div class="instruction-text">
+                    Open in ImageViewer. Zoom in on top right quadrant.
+                </div>
+                <label>FLAG:</label>
+                <input type="text">
+            </div>
+
+            <!-- Challenge 2 -->
+            <div class="question-block">
+                <h3>2. Text hidden in bits (CSA_ForL2C2-05.jpg)</h3>
+                <div class="instruction-text">
+                    Tool: <strong>Okteta</strong>. Open file with Okteta. Check right column (ASCII).
+                </div>
+                <label>FLAG:</label>
+                <input type="text">
+            </div>
+
+            <!-- Challenge 3 -->
+            <div class="question-block">
+                <h3>3. Metadata (Pico_SoMeta.png)</h3>
+                <div class="instruction-text">
+                    Tool: <strong>Exiftool</strong>. Command: <code>exiftool Pico_SoMeta.png</code>
+                </div>
+                <label>FLAG:</label>
+                <input type="text">
+            </div>
+
+            <!-- Challenge 4 -->
+            <div class="question-block">
+                <h3>4. File nested in a file (GT_Reservoir2.JPG)</h3>
+                <div class="instruction-text">
+                    Tool: <strong>Binwalk</strong>. Command: <code>binwalk -e GT_Reservoir2.JPG</code>
+                    <br>Check extracted folder. Use <code>w3m flag.jpg</code> to view result.
+                </div>
+                <label>FLAG:</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your terminal showing the Binwalk extraction or w3m output</p>
+            </div>
+
+            <!-- Challenge 5 -->
+            <div class="question-block">
+                <h3>5. Steganography Software (Pico_WhatLies.jpg)</h3>
+                <div class="instruction-text">
+                    Tool: <strong>Steghide</strong>. Command: <code>steghide --extract -sf Pico_WhatLies.jpg</code>
+                    <br>Passphrase: <strong>key123</strong>. Read output: <code>cat flagz</code>
+                </div>
+                <label>FLAG:</label>
+                <input type="text">
+            </div>
+
+            <!-- Challenge 6 -->
+            <div class="question-block">
+                <h3>6. Apply skills: Hiding a file</h3>
+                <p>Use <code>man steghide</code> to learn how to hide a text file in an image.</p>
+                <label>a. Linux command to create a text file:</label>
+                <input type="text">
+                <label>b. Full command to embed text file in image:</label>
+                <input type="text">
+                <label>c. Were you successful? Issues encountered?</label>
+                <textarea rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

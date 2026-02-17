@@ -57,12 +57,166 @@ function removeImage() {
 
 // Curriculum Data
 const UNITS = [
-    { id: 1, title: "Introduction to Cybersecurity & Authentication", subtitle: "Foundational Research", labs: [] },
-    { id: 2, title: "Malicious Code & Secure Environment", subtitle: "Foundational Research", labs: [] },
-    { id: 3, title: "The Human Element Social Engineering & OSINT", subtitle: "Foundational Research", labs: [] },
-    { id: 4, title: "System Security & Hardening", subtitle: "Foundational Research", labs: [] },
-    { id: 5, title: "Data Representation & Cryptography Concepts", subtitle: "Foundational Research", labs: [] },
-    { id: 6, title: "Advanced Command Line & Scripting", subtitle: "Foundational Research", labs: [] },
+    {
+        id: 1,
+        title: "Introduction to Cybersecurity & Authentication",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "CIA Triad & Authentication",
+                id: "1.1.1",
+                url: "labs/u01/cia-triad.html",
+                icon: "shield",
+                desc: "Understand Confidentiality, Integrity, and Availability and the three factors of authentication."
+            },
+            {
+                title: "Password Security",
+                id: "1.2.1",
+                url: "labs/u01/password-security.html",
+                icon: "lock",
+                desc: "Analyze password strength, entropy, and the importance of Multi-Factor Authentication."
+            }
+        ]
+    },
+    {
+        id: 2,
+        title: "Malicious Code & Secure Environment",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "Online VM Access",
+                id: "1.3.1",
+                url: "labs/u02/vm-access-setup.html",
+                icon: "monitor",
+                desc: "Setup and connect to the CYBER.ORG Range Virtual Machines."
+            },
+            {
+                title: "Terminus (Part 1)",
+                id: "1.3.2",
+                url: "labs/u02/terminus-part1.html",
+                icon: "map",
+                desc: "Explore basic Linux commands in the Terminus adventure game."
+            },
+            {
+                title: "Password Cracking (JtR)",
+                id: "1.3.2b",
+                url: "labs/u02/password-cracking-jtr.html",
+                icon: "key",
+                desc: "Use John the Ripper to crack weak passwords."
+            },
+            {
+                title: "Windows CLI Basics",
+                id: "1.3.2c",
+                url: "labs/u02/windows-cli-basics.html",
+                icon: "app-window",
+                desc: "Introduction to Windows Command Prompt commands."
+            },
+            {
+                title: "Linux Command Reference",
+                id: "1.3.2d",
+                url: "labs/u02/linux-command-reference.html",
+                icon: "list",
+                desc: "Reference cheat sheet for essential Linux commands."
+            }
+        ]
+    },
+    {
+        id: 3,
+        title: "The Human Element Social Engineering & OSINT",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "Social Engineering Toolkit",
+                id: "2.1.1",
+                url: "labs/u03/social-engineering-toolkit.html",
+                icon: "user-cog",
+                desc: "Simulate a phishing attack using the Social Engineering Toolkit (SET) to harvest credentials."
+            }
+        ]
+    },
+    {
+        id: 4,
+        title: "System Security & Hardening",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "MBSA Vulnerability Scan",
+                id: "3.1.2",
+                url: "labs/u04/mbsa-scan.html",
+                icon: "shield-check",
+                desc: "Scan Windows 7 with Microsoft Baseline Security Analyzer and mitigate vulnerabilities."
+            }
+        ]
+    },
+    {
+        id: 5,
+        title: "Data Representation & Cryptography Concepts",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "Decoding with CTF Challenges",
+                id: "4.1.3",
+                url: "labs/u05/decoding-ctf.html",
+                icon: "lock",
+                desc: "Solve picoCTF challenges using various decoding techniques (Hex, Binary, Base64)."
+            },
+            {
+                title: "Steganography CTF",
+                id: "4.2.2",
+                url: "labs/u05/steganography-ctf.html",
+                icon: "image",
+                desc: "Use Okteta, Exiftool, Binwalk, and Steghide to find hidden flags in images."
+            }
+        ]
+    },
+    {
+        id: 6,
+        title: "Advanced Command Line & Scripting",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "Advanced Linux CLI",
+                id: "4.3.1",
+                url: "labs/u06/advanced-linux-cli.html",
+                icon: "terminal",
+                desc: "Master advanced CLI commands: paths, redirection, and piping."
+            },
+            {
+                title: "Searching with Grep",
+                id: "4.3.1b",
+                url: "labs/u06/grep-searching.html",
+                icon: "search",
+                desc: "Use grep with regex to find patterns in files."
+            },
+            {
+                title: "Terminus Game (Pt 2)",
+                id: "4.3.1c",
+                url: "labs/u06/terminus-part2.html",
+                icon: "map",
+                desc: "Navigate the Terminus adventure game using Linux commands."
+            },
+            {
+                title: "Scripting in Linux",
+                id: "4.3.2",
+                url: "labs/u06/linux-scripting.html",
+                icon: "code",
+                desc: "Write and execute simple Bash scripts."
+            },
+            {
+                title: "CLI for Networking",
+                id: "8.1.1",
+                url: "labs/u06/cli-networking.html",
+                icon: "wifi",
+                desc: "Use ifconfig, ping, ssh, nc, and netstat for network recon."
+            }
+        ]
+    },
     {
         id: 7,
         title: "Networking Fundamentals",

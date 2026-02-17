@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripting in Linux</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Scripting in Linux</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Learn the steps for scripting in Linux using the BASH shell.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali in the CYBER.ORG Range.</label></li>
+            </ul>
+        </div>
+
+        <!-- Script 1 -->
+        <div class="section">
+            <h2>Part 1: HelloScript.sh</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Open terminal, go to Desktop: <code>cd Desktop</code></label></li>
+                <li><label><input type="checkbox"> Open editor: <code>leafpad</code></label></li>
+                <li><label><input type="checkbox"> Type the script (Starts with <code>#!/bin/bash</code>).</label></li>
+                <li><label><input type="checkbox"> Save as <code>HelloScript.sh</code>.</label></li>
+                <li><label><input type="checkbox"> Make executable: <code>chmod +x HelloScript.sh</code></label></li>
+                <li><label><input type="checkbox"> Run: <code>bash HelloScript.sh</code></label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>What messages does the script display?</label>
+                <input type="text">
+                <label>What does Note.txt say?</label>
+                <input type="text">
+                <label>Is it a security concern that a script can easily create a file?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <!-- Script 2 -->
+        <div class="section">
+            <h2>Part 2: TrialScript.sh</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Create <code>TrialScript.sh</code> with the provided
+                        commands.</label></li>
+                <li><label><input type="checkbox"> Make executable and run it.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>What does <code>ncal -b</code> do?</label>
+                <input type="text">
+                <label>What does <code>cat /etc/group | grep "sudo"</code> do?</label>
+                <input type="text">
+                <label>What does <code>rev</code> do?</label>
+                <input type="text">
+                <label>Which of these might be a cybersecurity concern?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <!-- Challenge -->
+        <div class="section">
+            <h2>Part 3: Scripting Challenge</h2>
+            <div class="instruction-text">
+                Create a script that uses at least two of: <code>file</code>, <code>echo</code>, <code>tree</code>,
+                <code>sort</code>, <code>whoami</code>, <code>cat</code>.
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of your custom script code</p>
+            </div>
+            <div class="image-zone" style="margin-top: 20px;">
+                <p>Paste screenshot of your custom script running</p>
+            </div>
+            <div class="question-block">
+                <label>Could your script be a cybersecurity risk? Why or why not?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

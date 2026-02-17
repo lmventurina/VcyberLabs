@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decoding with CTF Challenges</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Decoding with CTF Challenges</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Solve challenges from picoCTF and CyberStart America using decoding techniques.
+                <br>
+                <strong>Format:</strong> picoCTF{answer}
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Register/Login at <a href="https://play.picoctf.org"
+                            target="_blank">play.picoctf.org</a>.</label></li>
+                <li><label><input type="checkbox"> Go to <strong>Practice</strong> -> <strong>picoGym</strong>.</label>
+                </li>
+                <li><label><input type="checkbox"> Search for each challenge name below.</label></li>
+                <li><label><input type="checkbox"> Use tools like CyberChef or ASCII tables (Google is
+                        allowed!).</label></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Challenges</h2>
+
+            <div class="question-block">
+                <h3>1. Warmed Up</h3>
+                <p>What is 0x3D (base 16) in decimal (base 10)?</p>
+                <input type="text" placeholder="picoCTF{...}">
+            </div>
+
+            <div class="question-block">
+                <h3>2. 2Warm</h3>
+                <p>Can you convert the number 42 (base 10) to binary (base 2)?</p>
+                <input type="text" placeholder="picoCTF{...}">
+            </div>
+
+            <div class="question-block">
+                <h3>3. Let's Warm Up</h3>
+                <p>If I told you a word started with 0x70 in hexadecimal, what would it start with in ASCII?</p>
+                <input type="text" placeholder="picoCTF{...}">
+            </div>
+
+            <div class="question-block">
+                <h3>4. Bases</h3>
+                <p>What does this mean? <code>bDNhcm5fdGgzX3IwcDM1</code></p>
+                <input type="text" placeholder="picoCTF{...}">
+            </div>
+
+            <div class="question-block">
+                <h3>5. Tapping</h3>
+                <p>There's tapping coming in from the wires. What's it saying?</p>
+                <p style="font-family: monospace; background: #eee; padding: 10px;">
+                    .--. . . -.-. --- -.-. - . .-. { -- ----- .-. . . . . . .-- -.-. -----
+                    -.. ...-- .---- ... ..-. ..- -. ..--- -.... ---.. ...-- ---..
+                    . .--- . . . .- -. . . . .---- ----- }
+                </p>
+                <input type="text" placeholder="PICOCTF{...}">
+            </div>
+
+            <div class="question-block">
+                <h3>6. The Numbers</h3>
+                <p>The numbers... what do they mean?</p>
+                <div class="image-zone">
+                    <p>Paste screenshot of the "The Numbers" challenge image or your decoded solution process</p>
+                </div>
+                <input type="text" placeholder="PICOCTF{...}" style="margin-top: 10px;">
+            </div>
+
+            <!-- Adding Based on PDF Pattern -->
+            <div class="question-block">
+                <h3>7. Flags</h3>
+                <p>What do the flags mean?</p>
+                <input type="text" placeholder="PICOCTF{...}">
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

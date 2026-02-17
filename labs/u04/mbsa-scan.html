@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBSA Vulnerability Scan</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>MBSA Vulnerability Scan</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Examine how to perform an initial vulnerability assessment on Windows OS systems using the Microsoft
+                Baseline Security Analyzer (MBSA) tool. Identify missing updates and common misconfigurations.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Win7 in the CYBER.ORG Range.</label></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Part 1: Scanning the System</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Start | All Programs | Microsoft Baseline Analyzer.</label></li>
+                <li><label><input type="checkbox"> Select "Scan a Computer".</label></li>
+                <li><label><input type="checkbox"> Accept computer name defaults.</label></li>
+                <li><label><input type="checkbox"> Check ONLY the top 2 boxes.</label></li>
+                <li><label><input type="checkbox"> Click "Start Scan".</label></li>
+            </ol>
+            <div class="image-zone">
+                <p>Paste screenshot of your initial scan results</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Analyzing Results</h2>
+            <div class="question-block">
+                <label>1. Which issues have "Check Failed (Critical)"? (Check all that apply)</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                    <label><input type="checkbox"> Administrators</label>
+                    <label><input type="checkbox"> Autologon</label>
+                    <label><input type="checkbox"> Automatic Updates</label>
+                    <label><input type="checkbox"> File System</label>
+                    <label><input type="checkbox"> Guest Account</label>
+                    <label><input type="checkbox"> Incomplete Updates</label>
+                    <label><input type="checkbox"> Local Account Password Set</label>
+                    <label><input type="checkbox"> Password Expiration</label>
+                    <label><input type="checkbox"> Restrict Anonymous</label>
+                    <label><input type="checkbox"> Windows 7 Firewall</label>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <label>2. Which user accounts have weak passwords?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>3. What are the Administrative Vulnerabilities (Non-Critical)?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>4. Which users have non-expiring passwords?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>5. What users are listed as Administrators?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>6. Are potentially unnecessary services installed? List them:</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>7. What is the firewall status?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Part 3: Mitigation</h2>
+            <p>Close MBSA using the "X".</p>
+
+            <h3>1. Automatic Updates</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Start | Search "updates" | Windows 7 Updates.</label></li>
+                <li><label><input type="checkbox"> Click "Turn On Automatic Updates".</label></li>
+            </ul>
+
+            <h3>2. User Vulnerabilities</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Start | Right-click Computer | Manage | Local Users and Groups |
+                        Users.</label></li>
+                <li><label><input type="checkbox"> <strong>Guest:</strong> Properties -> Account is Disabled.</label>
+                </li>
+                <li><label><input type="checkbox"> <strong>Passwords:</strong> Set 'Windows 7' and 'Infosec' password to
+                        <code>P@ssword!</code></label></li>
+                <li><label><input type="checkbox"> <strong>Expirations:</strong> Uncheck "Password Never Expires" for
+                        'Windows 7', 'Administrator', 'Infosec'.</label></li>
+                <li><label><input type="checkbox"> <strong>Admin Group:</strong> Remove 'BackupAdmin' and 'Infosec' from
+                        Administrators group.</label></li>
+            </ul>
+
+            <h3>3. Local Policy Settings</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Start | Search "Local" | Local Security Policy.</label></li>
+                <li><label><input type="checkbox"> <strong>Account Policies -> Password Policy:</strong> Update settings
+                        as required.</label></li>
+                <li><label><input type="checkbox"> <strong>Local Policies -> Security Options:</strong> Disable "Network
+                        Access: Let Everyone permissions apply to anonymous users".</label></li>
+            </ul>
+
+            <h3>4. Services & Autologon</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> <strong>Services:</strong> Stop and Disable "World Wide Web
+                        Services".</label></li>
+                <li><label><input type="checkbox"> <strong>Autologon:</strong> Run <code>netplwiz</code>. Check "Users
+                        must enter a username...".</label></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Part 4: Rescan</h2>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Open MBSA again.</label></li>
+                <li><label><input type="checkbox"> Run the scan with same options.</label></li>
+                <li><label><input type="checkbox"> Confirm all critical issues fixed (except HOMEUSER$
+                        password).</label></li>
+            </ul>
+            <div class="image-zone">
+                <p>Paste screenshot of the rescan results showing corrected vulnerabilities</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

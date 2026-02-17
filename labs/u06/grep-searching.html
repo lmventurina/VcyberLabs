@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searching Files with grep</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Searching Files with grep</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Review and practice using the grep command and investigate regular expressions.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali in the CYBER.ORG Range.</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 & 2 -->
+        <div class="section">
+            <h2>Part 1 & 2: Creating Files & Grep Options</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Create <code>foods.txt</code> using <code>cat > foods.txt</code>.
+                        Type 5-6 foods. Ctrl+D to save.</label></li>
+                <li><label><input type="checkbox"> Search for "banana": <code>grep banana foods.txt</code></label></li>
+                <li><label><input type="checkbox"> Try with <code>-n</code> (Line numbers).</label></li>
+                <li><label><input type="checkbox"> Try with <code>-vn</code> (Invert match + line numbers).</label></li>
+                <li><label><input type="checkbox"> Try with <code>-c</code> (Count).</label></li>
+            </ol>
+            <div class="image-zone">
+                <p>Paste screenshot of your grep commands on foods.txt</p>
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3: Viewing Commands (nl, less, head, tail)</h2>
+            <div class="instruction-text">
+                Navigate to <code>~/CourseFiles/IntroCybersecurity/GreatBooks</code>
+            </div>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> <code>nl sherlock.txt</code> (Line numbers)</label></li>
+                <li><label><input type="checkbox"> <code>less sherlock.txt</code> (Page view)</label></li>
+                <li><label><input type="checkbox"> <code>head -5 sherlock.txt</code> (First 5 lines)</label></li>
+                <li><label><input type="checkbox"> <code>tail -5 sherlock.txt</code> (Last 5 lines)</label></li>
+                <li><label><input type="checkbox"> <code>tac sherlock.txt</code> (Reverse order)</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 4 -->
+        <div class="section">
+            <h2>Part 4: Regex with grep</h2>
+            <p>Use <code>grep</code> on <code>sherlock.txt</code> with the following patterns.</p>
+
+            <div class="question-block">
+                <label><code>grep '^a' sherlock.txt</code> - What does it do?</label>
+                <input type="text">
+                <label><code>grep '^the' sherlock.txt</code> - What does it do?</label>
+                <input type="text">
+                <label><code>grep 'men' sherlock.txt</code> - What does it do?</label>
+                <input type="text">
+                <label><code>grep 'b[lr]' sherlock.txt</code> - What does it do?</label>
+                <input type="text">
+                <label><code>grep '\&lt;men\&gt;' sherlock.txt</code> - What does it do?</label>
+                <input type="text">
+                <label><code>grep '^..e' sherlock.txt</code> - What does it do?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of one of your regex grep results</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

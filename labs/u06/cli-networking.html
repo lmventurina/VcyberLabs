@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI for Networking</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>CLI for Networking</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label>Partner:</label>
+                <input type="text" id="partner" placeholder="Partner name">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Practice using 5 terminal commands for networking: ifconfig, ping, ssh, nc, and netstat.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali. Identify as STUDENT1 or STUDENT2.</label></li>
+                <li><label><input type="checkbox"> Create identity file:
+                        <code>touch Desktop/ThisIs[Name]VM</code></label></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Commands</h2>
+
+            <h3>1. ifconfig</h3>
+            <div class="question-block">
+                <label>What is the IP address (inet) for the eth0 interface?</label>
+                <input type="text">
+            </div>
+
+            <h3>2. ping</h3>
+            <div class="question-block">
+                <label>Ping your partner (5 packets). Are there timeouts?</label>
+                <input type="text">
+                <label>What is the shortest time for a reply (in ms)?</label>
+                <input type="text">
+            </div>
+
+            <h3>3. ssh (Secure Shell)</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Configure `sshd_config` (PasswordAuthentication yes).</label></li>
+                <li><label><input type="checkbox"> Reset kali password: <code>sudo passwd kali</code></label></li>
+                <li><label><input type="checkbox"> Restart sshd.</label></li>
+                <li><label><input type="checkbox"> Connect: <code>ssh kali@[PartnerIP]</code></label></li>
+            </ul>
+            <div class="question-block">
+                <label>Whose IP address do you see after 'kali' in the prompt?</label>
+                <input type="text">
+                <label>Type <code>ls</code>. What identity file do you see?</label>
+                <input type="text">
+            </div>
+
+            <h3>4. nc (Netcat)</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Listener: <code>nc -l -p 6666</code></label></li>
+                <li><label><input type="checkbox"> Sender: <code>nc [TargetIP] 6666</code></label></li>
+            </ul>
+            <div class="question-block">
+                <label>What message did you send back to your partner?</label>
+                <input type="text">
+            </div>
+
+            <h3>5. netstat</h3>
+            <div class="question-block">
+                <label>Run <code>netstat -tan</code>. What port numbers are "Listening"?</label>
+                <input type="text">
+                <label>Run <code>netstat -tap</code>. Find "Established" connection. What port number is listed?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your SSH or Netcat session</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Extension: Bandit Game</h2>
+            <div class="instruction-text">
+                Connect to Bandit Level 0: <code>ssh bandit0@bandit.labs.overthewire.org -p 2220</code>
+            </div>
+            <div class="question-block">
+                <label>Copy the flag from the readme file:</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

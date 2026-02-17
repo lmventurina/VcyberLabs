@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminus - Part 1</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Terminus - Part 1</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Explore the Terminus game to practice basic Linux commands.
+                <br>
+                <a href="https://mprat.github.io/Terminus/" target="_blank">https://mprat.github.io/Terminus/</a>
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Open the Terminus game link.</label></li>
+                <li><label><input type="checkbox"> Skip "MIT". Go to "Western Forest".</label></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Western Forest</h2>
+            <div class="question-block">
+                <label>1. Read signs outside Spell Casting Academy. What are they giving away?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>2. What is the command to get Home?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>3. Speak to the Hurrying Student. What advice does he give?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>4. In Lessons room: What is the spell for moving objects?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>5. In Practice room: What happens if you try to go into the box?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>6. What can you fit in the box? How many?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Northern Meadow</h2>
+            <div class="instruction-text">Go Home, then go to Northern Meadow.</div>
+
+            <div class="question-block">
+                <label>7. What kind of animal is there and are they friendly?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>8. Talk to Old Man. What command does he tell you about?</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>The Cave</h2>
+            <div class="question-block">
+                <label>9. What is the path from Home to the Cave?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>10. How do you get from Cave to Dank Room?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>11. How do you go forward through the Dank Room?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>12. What is on the other end?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>13. What new animal do you meet? Friendly?</label>
+                <input type="text">
+            </div>
+            <div class="question-block">
+                <label>14. Where do you find the green light?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your current location in the game</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>
