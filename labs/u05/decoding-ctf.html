@@ -11,6 +11,36 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Encoding Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">ASCII</span>
+                <p class="ref-def">American Standard Code for Information Interchange. A character encoding standard.
+                </p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Binary</span>
+                <p class="ref-def">A base-2 number system invented by Gottfried Leibniz that is made up of only two
+                    numbers: 0 and 1.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Hexadecimal (Hex)</span>
+                <p class="ref-def">A base-16 number system. It uses sixteen distinct symbols, most often the symbols 0–9
+                    to represent values 0 to 9, and A–F to represent values 10 to 15.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Base64</span>
+                <p class="ref-def">A binary-to-text encoding scheme that represents binary data in an ASCII string
+                    format by translating it into a radix-64 representation.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -108,6 +138,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

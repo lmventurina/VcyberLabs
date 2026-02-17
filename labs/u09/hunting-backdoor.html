@@ -10,6 +10,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Malware Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Backdoor</span>
+                <p class="ref-def">A method of bypassing normal authentication or encryption in a computer, product,
+                    embedded device, or its embodiment.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Persistence</span>
+                <p class="ref-def">Techniques used by malware to maintain access to a system across restarts, changed
+                    credentials, and other interruptions.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Registry Run Keys</span>
+                <p class="ref-def">Registry keys that cause programs to run each time a user logs on.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Netcat</span>
+                <p class="ref-def">A computer networking utility for reading from and writing to network connections
+                    using TCP or UDP.</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -148,6 +176,8 @@
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

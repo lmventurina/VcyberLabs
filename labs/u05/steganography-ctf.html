@@ -11,6 +11,35 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Stego Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Steganography</span>
+                <p class="ref-def">The practice of concealing a file, message, image, or video within another file,
+                    message, image, or video.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">ExifTool</span>
+                <p class="ref-def">A platform-independent Perl library plus a command-line application for reading,
+                    writing and editing meta information in a wide variety of files.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Binwalk</span>
+                <p class="ref-def">A tool for analyzing, reverse engineering, and extracting firmware images.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Steghide</span>
+                <p class="ref-def">A steganography program that is able to hide data in various kinds of image- and
+                    audio-files.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -120,6 +149,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

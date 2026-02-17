@@ -10,6 +10,35 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Web Auth Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Cookie</span>
+                <p class="ref-def">A small piece of data stored on the user's computer by the web browser while browsing
+                    a website.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Session ID</span>
+                <p class="ref-def">A unique number that a website's server assigns to a specific user for the duration
+                    of that user's visit.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Session Hijacking</span>
+                <p class="ref-def">The exploitation of a valid computer session—sometimes also called a session key—to
+                    gain unauthorized access to information or services in a computer system.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">XSS</span>
+                <p class="ref-def">Cross-Site Scripting. A vulnerability that enables attackers to inject client-side
+                    scripts into web pages viewed by other users.</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -171,6 +200,8 @@
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

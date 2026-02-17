@@ -87,9 +87,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // PDF Export Functionality
+// Reference Panel Logic
+function toggleReference() {
+    const panel = document.getElementById('reference-panel');
+    const overlay = document.getElementById('reference-overlay');
+
+    if (panel && overlay) {
+        panel.classList.toggle('open');
+        overlay.classList.toggle('open');
+    }
+}
+
+// Close on overlay click
+document.addEventListener('DOMContentLoaded', () => {
+    // Existing image logic...
+
+    // Create Overlay if not exists
+    if (!document.getElementById('reference-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.id = 'reference-overlay';
+        overlay.className = 'reference-overlay';
+        overlay.onclick = toggleReference;
+        document.body.appendChild(overlay);
+    }
+});
+
+// PDF Export Functionality
 async function downloadPDF() {
     const controls = document.querySelector('.controls');
     const container = document.querySelector('.container');
+    const panel = document.getElementById('reference-panel'); // Ensure panel is ignored
+
+    // ... rest of PDF logic ...
     const originalButtonText = controls.querySelector('button').innerText;
 
     // Load library if not present

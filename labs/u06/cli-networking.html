@@ -11,6 +11,36 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Network CLI</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">ifconfig</span>
+                <p class="ref-def">Interface Configuration. Used to view and change the configuration of the network
+                    interfaces on your system.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">netstat</span>
+                <p class="ref-def">Network Statistics. Displays network connections, routing tables, and interface
+                    statistics.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">ssh</span>
+                <p class="ref-def">Secure Shell. A cryptographic network protocol for operating network services
+                    securely over an unsecured network.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">telnet</span>
+                <p class="ref-def">An application protocol used on the Internet or local area network to provide a
+                    bidirectional interactive text-oriented communication facility.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -116,6 +146,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

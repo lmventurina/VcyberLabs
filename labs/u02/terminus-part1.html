@@ -11,6 +11,36 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Linux Commands</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">ls</span>
+                <p class="ref-def">List directory contents.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">cd</span>
+                <p class="ref-def">Change the shell working directory.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">pwd</span>
+                <p class="ref-def">Print name of current/working directory.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">cat</span>
+                <p class="ref-def">Concatenate files and print on the standard output (read file content).</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">mv</span>
+                <p class="ref-def">Move or rename files.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -36,7 +66,8 @@
         <div class="section">
             <h2>Objective</h2>
             <div class="instruction-text">
-                Explore the Terminus game to practice basic Linux commands.
+                Explore the Terminus game to practice basic <span class="term"
+                    data-tooltip="Text-based instructions for the OS">Linux commands</span>.
                 <br>
                 <a href="https://mprat.github.io/Terminus/" target="_blank">https://mprat.github.io/Terminus/</a>
             </div>
@@ -122,6 +153,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

@@ -11,6 +11,38 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Key Terms & Concepts</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Confidentiality</span>
+                <p class="ref-def">Ensuring that information is accessible only to those authorized to have access.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Integrity</span>
+                <p class="ref-def">Safeguarding the accuracy and completeness of information and processing methods.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Availability</span>
+                <p class="ref-def">Ensuring that authorized users have access to information and associated assets when
+                    required.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Authentication</span>
+                <p class="ref-def">The process of verifying the identity of a user, process, or device.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Authorization</span>
+                <p class="ref-def">The process of giving the user permission to access a specific resource or function.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -36,8 +68,12 @@
         <div class="section">
             <h2>Objective</h2>
             <div class="instruction-text">
-                Understand the core principles of information security: Confidentiality, Integrity, and Availability
-                (The CIA Triad), and explore methods of Authentication.
+                Understand the core principles of information security: <span class="term"
+                    data-tooltip="Only authorized users can access data">Confidentiality</span>, <span class="term"
+                    data-tooltip="Data is accurate and unchanged">Integrity</span>, and <span class="term"
+                    data-tooltip="Data is accessible when needed">Availability</span>
+                (The CIA Triad), and explore methods of <span class="term"
+                    data-tooltip="Verifying identity">Authentication</span>.
             </div>
         </div>
 
@@ -99,6 +135,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

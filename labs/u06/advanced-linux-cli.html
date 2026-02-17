@@ -11,6 +11,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>CLI Concepts</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Absolute Path</span>
+                <p class="ref-def">A path that points to the same location in a file system, regardless of the current
+                    working directory (e.g., /home/user/file).</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Relative Path</span>
+                <p class="ref-def">A path relative to the current working directory (e.g., ../file).</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Pipe (|)</span>
+                <p class="ref-def">Redirects the output of the command on the left to the input of the command on the
+                    right.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Wildcard (*)</span>
+                <p class="ref-def">A character used to represent zero or more characters in a string.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -130,6 +158,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

@@ -10,6 +10,33 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>SQL Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">SQL</span>
+                <p class="ref-def">Structured Query Language. A domain-specific language used in programming and
+                    designed for managing data held in a relational database management system.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">SELECT</span>
+                <p class="ref-def">The most common SQL statement, used to retrieve data from a database.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">WHERE</span>
+                <p class="ref-def">A SQL clause used to filter records.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Database</span>
+                <p class="ref-def">An organized collection of data, generally stored and accessed electronically from a
+                    computer system.</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -130,6 +157,8 @@
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

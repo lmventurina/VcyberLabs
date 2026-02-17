@@ -10,6 +10,33 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Injection Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Command Injection</span>
+                <p class="ref-def">An attack in which the goal is execution of arbitrary commands on the host operating
+                    system via a vulnerable application.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Input Validation</span>
+                <p class="ref-def">The process of ensuring that input is clean, correct, and useful.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Shell</span>
+                <p class="ref-def">A computer program which exposes an operating system's services to a human user or
+                    other program.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Semi-colon (;)</span>
+                <p class="ref-def">In many command line interfaces, used to separate multiple commands.</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -138,6 +165,8 @@
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

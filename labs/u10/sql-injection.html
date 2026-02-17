@@ -10,6 +10,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>SQLi Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">SQL Injection (SQLi)</span>
+                <p class="ref-def">A code injection technique, used to attack data-driven applications, in which
+                    malicious SQL statements are inserted into an entry field for execution.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">' OR 1=1</span>
+                <p class="ref-def">A common SQL injection payload that evaluates to true, often used to bypass
+                    authentication.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Sanitization</span>
+                <p class="ref-def">The practice of checking and modifying input to ensure it is safe.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Prepared Statements</span>
+                <p class="ref-def">A feature used to execute SQL statements safely and efficiently, neutralizing SQL
+                    injection.</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -150,6 +178,8 @@ else:
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

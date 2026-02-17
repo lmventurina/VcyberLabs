@@ -11,6 +11,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Recon Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">WHOIS</span>
+                <p class="ref-def">A query and response protocol that is used for querying databases that store the
+                    registered users or assignees of an Internet resource.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Registrar</span>
+                <p class="ref-def">An organization that manages the reservation of Internet domain names.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Top-Level Domain (TLD)</span>
+                <p class="ref-def">The last segment of the domain name (e.g., .com, .org, .edu).</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">OSINT</span>
+                <p class="ref-def">Open Source Intelligence. Data collected from publicly available sources to be used
+                    in an intelligence context.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -169,6 +197,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

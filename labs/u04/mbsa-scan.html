@@ -11,6 +11,36 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Vulnerability Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">MBSA</span>
+                <p class="ref-def">Microsoft Baseline Security Analyzer. A tool to determine security state by assessing
+                    missing security updates and less-secure security settings.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Vulnerability</span>
+                <p class="ref-def">A weakness which can be exploited by a threat actor, such as an attacker, to perform
+                    unauthorized actions within a computer system.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Patch Management</span>
+                <p class="ref-def">The process of distributing and applying updates to software to correct errors (bugs)
+                    or security vulnerabilities.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Administrative Shares</span>
+                <p class="ref-def">Hidden network shares created by the Windows NT family of operating systems that
+                    allow system administrators to have remote access.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -159,6 +189,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

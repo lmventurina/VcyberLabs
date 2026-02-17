@@ -10,6 +10,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Metasploit Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Metasploit</span>
+                <p class="ref-def">A computer security project that provides information about security vulnerabilities
+                    and aids in penetration testing and IDS signature development.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Module</span>
+                <p class="ref-def">A piece of software that can be used by the Metasploit Framework. Includes exploits,
+                    payloads, and auxiliary modules.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Exploit</span>
+                <p class="ref-def">Code that takes advantage of a software vulnerability or security flaw.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Payload</span>
+                <p class="ref-def">Code that runs on the target system after a successful exploit (e.g., a reverse
+                    shell).</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -150,6 +178,8 @@ keyscan_start
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

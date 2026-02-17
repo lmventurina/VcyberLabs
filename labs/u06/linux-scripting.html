@@ -11,6 +11,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>Bash Scripting</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Shebang (#!)</span>
+                <p class="ref-def">The character sequence at the beginning of a script that indicates which interpreter
+                    to use (e.g., #!/bin/bash).</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">chmod +x</span>
+                <p class="ref-def">Command to make a file executable.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Variable</span>
+                <p class="ref-def">A storage location paired with an associated symbolic name (identifier), which
+                    contains some known or unknown quantity of information.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">echo</span>
+                <p class="ref-def">A command that outputs the strings it is being passed as arguments.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -107,6 +135,8 @@
         </div>
 
         <div class="controls">
+            <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+                onclick="toggleReference()">📖 Reference</button>
             <button class="btn" onclick="downloadPDF()">Export PDF</button>
         </div>
     </div>

@@ -10,6 +10,34 @@
 </head>
 
 <body>
+    <!-- Reference Panel -->
+    <div id="reference-panel" class="reference-panel">
+        <div class="ref-header">
+            <h2>DevTools Terms</h2>
+            <button class="close-ref" onclick="toggleReference()">×</button>
+        </div>
+        <div class="ref-content">
+            <div class="ref-item">
+                <span class="ref-term">Developer Tools</span>
+                <p class="ref-def">A set of web developer tools built directly into the browser, allowing you to inspect
+                    specific elements, debug JavaScript and CSS, etc.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">DOM</span>
+                <p class="ref-def">Document Object Model. The data representation of the objects that comprise the
+                    structure and content of a document on the web.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Console</span>
+                <p class="ref-def">A tool used to log information, run JavaScript, and interact with the web page.</p>
+            </div>
+            <div class="ref-item">
+                <span class="ref-term">Network Tab</span>
+                <p class="ref-def">Allows you to monitor resources that are being uploaded or downloaded over the
+                    network in real time.</p>
+            </div>
+        </div>
+    </div>
 
     <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
 
@@ -179,6 +207,8 @@
     </div>
 
     <div class="controls">
+        <button class="btn" style="background-color: var(--secondary); margin-right: 10px;"
+            onclick="toggleReference()">📖 Reference</button>
         <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 

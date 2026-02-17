@@ -255,3 +255,165 @@ textarea:focus {
         /* Hide placeholder text on print if empty */
     }
 }
+
+/* --- New Tooltip & Reference Styles --- */
+
+/* Tooltip (Term) */
+.term {
+    cursor: help;
+    border-bottom: 2px dotted var(--primary);
+    position: relative;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.term:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: normal;
+    white-space: pre-wrap;
+    min-width: 200px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+}
+
+.term:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #333;
+    z-index: 100;
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Reference Panel (Slide-out) */
+.reference-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    background: var(--surface);
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.reference-panel.open {
+    transform: translateX(0);
+}
+
+.ref-header {
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ref-header h2 {
+    color: white;
+    font-size: 1.2em;
+    margin: 0;
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.close-ref {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.ref-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.ref-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.ref-item:last-child {
+    border-bottom: none;
+}
+
+.ref-term {
+    font-weight: bold;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.ref-def {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+/* Reference Overlay */
+.reference-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.reference-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media print {
+
+    .reference-panel,
+    .reference-overlay {
+        display: none !important;
+    }
+
+    .term {
+        border-bottom: none;
+        color: inherit;
+    }
+}
