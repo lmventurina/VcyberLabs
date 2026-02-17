@@ -391,46 +391,46 @@ function renderUnits() {
     if (!grid) return;
 
     grid.innerHTML = UNITS.map(unit => `
-        <div class="unit-card glass-panel p-8 ${unit.active ? 'border-[#023047]/20 ring-1 ring-[#023047]/10' : 'opacity-40 hover:opacity-60 transition-opacity'} flex flex-col justify-between">
-            <div class="unit-badge ${unit.active ? '!text-[#023047] !border-[#023047]/40 !bg-[#8ecae6]' : ''}">UNIT ${String(unit.id).padStart(2, '0')}</div>
+        <div class="unit-card glass-panel p-8 ${unit.active ? 'border-[#385CC3]/20 ring-1 ring-[#385CC3]/10' : 'opacity-60 hover:opacity-100 transition-opacity bg-[#f8f9fa]'} flex flex-col justify-between">
+            <div class="unit-badge ${unit.active ? '!text-[#ffffff] !border-[#385CC3] !bg-[#385CC3]' : 'text-[#555] border-[#ccc]'}">UNIT ${String(unit.id).padStart(2, '0')}</div>
             
             <button 
                 id="unit-toggle-${unit.id}"
                 type="button"
-                class="w-full text-left mb-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#fb8500] rounded-lg p-2 -ml-2 transition-colors hover:bg-[#023047]/5" 
+                class="w-full text-left mb-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#385CC3] rounded-lg p-2 -ml-2 transition-colors hover:bg-[#385CC3]/5" 
                 onclick="toggleUnit(${unit.id})"
                 aria-expanded="false"
                 aria-controls="labs-container-${unit.id}"
             >
                 <div class="flex justify-between items-start pointer-events-none">
                     <div>
-                        <h3 class="text-xl font-bold ${unit.active ? 'text-[#023047]' : 'text-slate-500'} mb-2">${unit.title}</h3>
-                        <p class="text-[10px] ${unit.active ? 'text-[#219ebc] font-mono' : 'text-slate-500'} uppercase tracking-widest pb-2">${unit.subtitle}</p>
+                        <h3 class="text-xl font-bold ${unit.active ? 'text-[#385CC3]' : 'text-[#555]'} mb-2">${unit.title}</h3>
+                        <p class="text-[10px] ${unit.active ? 'text-[#e85d04] font-mono' : 'text-[#777]'} uppercase tracking-widest pb-2 font-bold">${unit.subtitle}</p>
                     </div>
-                    <i data-lucide="chevron-down" id="chevron-${unit.id}" class="w-5 h-5 text-slate-500 transition-transform duration-300"></i>
+                    <i data-lucide="chevron-down" id="chevron-${unit.id}" class="w-5 h-5 text-[#385CC3] transition-transform duration-300"></i>
                 </div>
             </button>
             
             <div id="labs-container-${unit.id}" class="labs-container space-y-4">
-                <div class="pt-4 border-t border-[#023047]/10">
+                <div class="pt-4 border-t border-[#385CC3]/10">
                 ${unit.labs.length > 0 ? unit.labs.map(lab => `
-                    <a href="${lab.url}" class="lab-card group bg-white/60 border border-[#023047]/10 p-4 rounded-xl flex items-center justify-between relative overflow-hidden mb-3 last:mb-0 focus:outline-none focus:ring-2 focus:ring-[#fb8500] focus:ring-offset-2 focus:ring-offset-[#CFCFCF]">
-                        <i data-lucide="${lab.icon}" class="absolute -bottom-2 -right-2 w-16 h-16 text-[#023047]/5 group-hover:text-[#023047]/10 transition-colors"></i>
+                    <a href="${lab.url}" class="lab-card group bg-white border border-[#ced4da] p-4 rounded-xl flex items-center justify-between relative overflow-hidden mb-3 last:mb-0 focus:outline-none focus:ring-2 focus:ring-[#385CC3] focus:ring-offset-2 focus:ring-offset-[#E0D9CF] hover:border-[#385CC3] hover:shadow-md transition-all">
+                        <i data-lucide="${lab.icon}" class="absolute -bottom-2 -right-2 w-16 h-16 text-[#385CC3]/5 group-hover:text-[#385CC3]/10 transition-colors"></i>
                         <div class="flex items-center gap-4 z-10">
-                            <div class="w-10 h-10 bg-[#fb8500]/20 rounded-lg flex items-center justify-center border border-[#fb8500]/30 shrink-0">
-                                <i data-lucide="${lab.icon}" class="text-[#fb8500] w-5 h-5"></i>
+                            <div class="w-10 h-10 bg-[#385CC3]/10 rounded-lg flex items-center justify-center border border-[#385CC3]/20 shrink-0">
+                                <i data-lucide="${lab.icon}" class="text-[#385CC3] w-5 h-5"></i>
                             </div>
-                            <h4 class="text-sm font-bold text-[#023047] group-hover:text-[#219ebc] transition-colors">${lab.title}</h4>
+                            <h4 class="text-sm font-bold text-[#292B27] group-hover:text-[#385CC3] transition-colors">${lab.title}</h4>
                         </div>
                         <div class="z-10">
-                            <i data-lucide="chevron-right" class="w-5 h-5 text-[#023047]/50 group-hover:text-[#fb8500] transition-colors"></i>
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-[#ccc] group-hover:text-[#385CC3] transition-colors"></i>
                         </div>
                     </a>
                 `).join('') : `
-                    <div class="flex items-center justify-center py-10 border-2 border-dashed border-[#023047]/10 rounded-xl bg-black/5">
+                    <div class="flex items-center justify-center py-10 border-2 border-dashed border-[#ccc] rounded-xl bg-[#f8f9fa]">
                         <div class="text-center">
-                            <i data-lucide="lock" class="w-8 h-8 text-slate-600 mx-auto mb-3"></i>
-                            <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest">${unit.id < 9 ? 'In Development' : 'Reserved Space'}</p>
+                            <i data-lucide="lock" class="w-8 h-8 text-[#999] mx-auto mb-3"></i>
+                            <p class="text-[9px] font-black text-[#999] uppercase tracking-widest">${unit.id < 9 ? 'In Development' : 'Reserved Space'}</p>
                         </div>
                     </div>
                 `}
