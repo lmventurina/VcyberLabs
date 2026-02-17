@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 8.4.3 - Hunting a Backdoor</title>
+    <title>Hunting a Backdoor</title>
     <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
     <link rel="stylesheet" href="../lab.css">
 </head>
@@ -16,7 +16,7 @@
     <div class="container">
         <header>
             <div>
-                <h1>Lab 8.4.3 - Hunting a Backdoor</h1>
+                <h1>Hunting a Backdoor</h1>
                 <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
             </div>
             <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
@@ -56,10 +56,11 @@
             </div>
 
             <h3>Instructions:</h3>
-            <ul>
-                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
-                <li>Launch Kali and Windows 7. Open Windows 7.</li>
-                <li><strong>Turn off Window 7 Firewall:</strong> Start > "Firewall" > Turn off > OK.</li>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Launch Kali and Windows 7. Open Windows 7.</label></li>
+                <li><label><input type="checkbox"> <strong>Turn off Window 7 Firewall:</strong> Start > "Firewall" >
+                        Turn off > OK.</label></li>
             </ul>
         </div>
 
@@ -147,7 +148,7 @@
     </div>
 
     <div class="controls">
-        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+        <button class="btn" onclick="downloadPDF()">Export PDF</button>
     </div>
 
     <script src="../lab.js"></script>

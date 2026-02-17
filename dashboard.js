@@ -148,20 +148,16 @@ function renderUnits() {
             <div id="labs-container-${unit.id}" class="labs-container space-y-4">
                 <div class="pt-4 border-t border-[#023047]/10">
                 ${unit.labs.length > 0 ? unit.labs.map(lab => `
-                    <a href="${lab.url}" class="lab-card group bg-white/60 border border-[#023047]/10 p-5 rounded-2xl block relative overflow-hidden mb-4 last:mb-0 focus:outline-none focus:ring-2 focus:ring-[#fb8500] focus:ring-offset-2 focus:ring-offset-[#CFCFCF]">
+                    <a href="${lab.url}" class="lab-card group bg-white/60 border border-[#023047]/10 p-4 rounded-xl flex items-center justify-between relative overflow-hidden mb-3 last:mb-0 focus:outline-none focus:ring-2 focus:ring-[#fb8500] focus:ring-offset-2 focus:ring-offset-[#CFCFCF]">
                         <i data-lucide="${lab.icon}" class="absolute -bottom-2 -right-2 w-16 h-16 text-[#023047]/5 group-hover:text-[#023047]/10 transition-colors"></i>
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-8 h-8 bg-[#fb8500]/20 rounded-lg flex items-center justify-center border border-[#fb8500]/30">
-                                <i data-lucide="${lab.icon}" class="text-[#fb8500] w-4 h-4"></i>
+                        <div class="flex items-center gap-4 z-10">
+                            <div class="w-10 h-10 bg-[#fb8500]/20 rounded-lg flex items-center justify-center border border-[#fb8500]/30 shrink-0">
+                                <i data-lucide="${lab.icon}" class="text-[#fb8500] w-5 h-5"></i>
                             </div>
-                            <span class="text-[9px] font-mono text-[#fb8500]/80 uppercase tracking-widest">Lab ${lab.id}</span>
+                            <h4 class="text-sm font-bold text-[#023047] group-hover:text-[#219ebc] transition-colors">${lab.title}</h4>
                         </div>
-                        <h4 class="text-sm font-bold text-[#023047] group-hover:text-[#219ebc] transition-colors">${lab.title}</h4>
-                        <div class="mt-4 flex items-center justify-between">
-                            <span class="text-[8px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> ONLINE
-                            </span>
-                            <i data-lucide="chevron-right" class="w-4 h-4 text-[#023047]"></i>
+                        <div class="z-10">
+                            <i data-lucide="chevron-right" class="w-5 h-5 text-[#023047]/50 group-hover:text-[#fb8500] transition-colors"></i>
                         </div>
                     </a>
                 `).join('') : `
