@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypting SSL</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Decrypting SSL</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objectives</h2>
+            <div class="instruction-text">
+                Understand how SSL protects data in transit and how the session key is applied for decryption.
+            </div>
+            <h3>Scenario:</h3>
+            <div class="instruction-text">
+                We know that a criminal group uses a website to share the passphrase to their ransomware crypto account.
+                However, we don’t know what website they use or where on the website to look for the passphrase info. We
+                were able to capture a session when they visited the website and we also copied the session secret
+                key.<br><br>
+                <strong>Goal:</strong> Analyze the <code>CrackSSL.pcapng</code> file to find the 3 hidden words that
+                make up their passphrase. Once you find them, put them in alphabetical order separated by hyphens.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Click on the "Range" tab, then click on "Launch Kali"</label></li>
+                <li><label><input type="checkbox"> Once the status changes to booted for Windows, click "Open".</label>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Analyze Encrypted Data</h2>
+            <div class="instruction-text">
+                Start by analyzing the pcapng file while the data is still encrypted.
+            </div>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Open a terminal and launch Wireshark using the command:
+                        <code>sudo wireshark</code></label></li>
+                <li><label><input type="checkbox"> Click File | Open | Course Files | IntroCybersecurity. Select
+                        <code>CrackSSL.pcapng</code> and open it.</label></li>
+                <li><label><input type="checkbox"> In the "Display Filter" bar, type: <code>dns</code>. (This shows only
+                        packets resolving URLs)</label></li>
+                <li><label><input type="checkbox"> Scroll through the packets and look in the Info column to see the
+                        website URLs visited.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label for="q1">What website is listed in packet #87?</label>
+                <input type="text" id="q1">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click "X" on the far right of the "Display Filter" to clear the
+                        filter.</label></li>
+                <li><label><input type="checkbox"> We know the criminals use the word <strong>CLUE</strong>. Let's
+                        search for it.<br>
+                        Click Edit | Find Packet. Select "Packet Details" in the left box. Select "String" in the wide
+                        box. Type <code>CLUE</code> and click "Find".</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label for="q2">Does the search highlight a new packet to identify a result with the word CLUE?</label>
+                <input type="text" id="q2">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click "Cancel" in the Search Bar.</label></li>
+                <li><label><input type="checkbox"> Use the Export Objects tool to see specific files: File | Export
+                        Objects | HTTP.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label for="q3">Are there any items listed?</label>
+                <input type="text" id="q3">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your empty Export Objects list or search result</p>
+            </div>
+            <p class="note">Close the dialog box. Notice there are only 2 HTTP packets so we can't find much information
+                yet.</p>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Analyze Decrypted Data</h2>
+            <div class="instruction-text">
+                Analyze the decrypted data in the pcapng file by applying the browser session secret key.
+            </div>
+            <h3>1. Apply the Session Key:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click Edit | Preferences.</label></li>
+                <li><label><input type="checkbox"> Expand "Protocols" on the left, scroll down and select
+                        <strong>TLS</strong>.</label></li>
+                <li><label><input type="checkbox"> In the "Pre-Master Secret log filename" section, click
+                        "Browse".</label></li>
+                <li><label><input type="checkbox"> Navigate to <code>/home/kali/CourseFiles/IntroCybersecurity</code>,
+                        select <code>ssl-key.log</code>, and click Open.</label></li>
+                <li><label><input type="checkbox"> Click "OK". The session data is now decrypted!</label></li>
+            </ol>
+
+            <h3>2. Search for CLUE again:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click Edit | Find Packet.</label></li>
+                <li><label><input type="checkbox"> Ensure settings are: "Packet Details", "String", "CLUE". Click
+                        "Find".</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label for="q4">Are there any results? What word is next to CLUE?</label>
+                <input type="text" id="q4">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of the packet details showing the word next to CLUE</p>
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click "Cancel" in the search bar.</label></li>
+            </ol>
+
+            <h3>3. Inspect specific packet:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click Go | Go To Packet. Enter <code>1747</code> and click "Go to
+                        Packet".</label></li>
+                <li><label><input type="checkbox"> Right-click the packet row and select Follow | HTTP Stream.</label>
+                </li>
+                <li><label><input type="checkbox"> Scroll down past the second pink section. Look for blue text with a
+                        repeated word.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label for="q5">What is the repeated word?</label>
+                <input type="text" id="q5">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of the HTTP Stream execution showing the repeated word</p>
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Close the HTTP Stream dialog. Clear the display filter (Click
+                        X).</label></li>
+            </ol>
+
+            <h3>4. Export Objects (Again):</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Click File | Export Objects | HTTP.</label></li>
+                <li><label><input type="checkbox"> You will now see a full list of files!</label></li>
+                <li><label><input type="checkbox"> Start from the bottom. Select each <strong>jpg</strong> file and
+                        click "Preview". Find the one with a word in the picture.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label for="q6">What is the word found in the picture?</label>
+                <input type="text" id="q6">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of the image preview showing the hidden word</p>
+            </div>
+
+            <div class="question-block">
+                <label for="q7"><strong>Final Passphrase:</strong> Put the 3 hidden words in alphabetical order
+                    separated by hyphens (e.g. apple-banana-carrot).</label>
+                <input type="text" id="q7">
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

@@ -158,7 +158,21 @@ const UNITS = [
             }
         ]
     },
-    { id: 11, title: "Applied Cryptography & Secure Communications", subtitle: "Tier 2 Research", labs: [] }
+    {
+        id: 11,
+        title: "Applied Cryptography & Secure Communications",
+        subtitle: "Tier 2 Research",
+        active: true,
+        labs: [
+            {
+                title: "Decrypting SSL",
+                id: "10.2.1",
+                url: "labs/u11/decrypting-ssl.html",
+                icon: "unlock",
+                desc: "Analyze PCAP files to recover session keys and decrypt SSL/TLS traffic."
+            }
+        ]
+    }
 ];
 
 // UI Generator
