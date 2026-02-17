@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary Scripts Output
+scripts/*.txt
+scripts/lab*_utf8.txt
+
+# Editor
+.vscode/
+.idea/
+
+# Initial PDFs
+PDFs/

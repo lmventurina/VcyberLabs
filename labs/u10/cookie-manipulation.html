@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Manipulation</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+
+    <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Cookie Manipulation</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                <!-- TODO: Paste Objective from PDF -->
+                Examine how session management data like cookies can be manipulated to achieve unauthorized account
+                access.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Click on the Range tab, then click on Launch Kali.</label></li>
+                <li><label><input type="checkbox"> Once the status changes to booted, click Open.</label></li>
+                <li><label><input type="checkbox"> Setup Websites: Open a terminal and start the Juice Shop application:
+                        <code>JuiceShop_start</code></label></li>
+            </ul>
+        </div>
+
+        <!-- Part A -->
+        <div class="section">
+            <h2>Part A: Cookie Theft To Access Another User’s Account</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In Firefox, navigate to <code>localhost:3000</code></label></li>
+                <li><label><input type="checkbox"> In the Welcome box, click "Dismiss" and in the cookie notification
+                        box, click "Me want it!"</label></li>
+                <li><label><input type="checkbox"> In the upper right toolbar, select "Account | Login" and use these
+                        credentials:<br><strong>username: admin@juice-sh.op password: admin123</strong></label></li>
+                <li><label><input type="checkbox"> <strong>IMPORTANT!</strong> Check "Remember Me" and click "Login."
+                        Ignore the 2 green popup bars.</label></li>
+                <li><label><input type="checkbox"> In the upper toolbar click on "Your Basket" and observe items in the
+                        cart and that the total is $21.94.</label></li>
+                <li><label><input type="checkbox"> Right-click anywhere on the Basket page and click "Inspect."</label>
+                </li>
+                <li><label><input type="checkbox"> In the "Tabs" section of the Inspect Window select "Storage."</label>
+                </li>
+                <li><label><input type="checkbox"> In the left toolbar of the Applications Tab, click on the arrow next
+                        to Cookies, then click on <code>http://localhost:3000</code>.</label></li>
+                <li><label><input type="checkbox"> Double-click the string of characters under the Value column beside
+                        <strong>token</strong></label></li>
+                <li><label><input type="checkbox"> Copy this value and paste into a new Leafpad document</label></li>
+                <li><label><input type="checkbox"> Back in Firefox click below the Cookies to Local Storage |
+                        <code>http://localhost:3000</code>. Notice that value is the same as our cookie token.</label>
+                </li>
+                <li><label><input type="checkbox"> Click "Session Storage | http://localhost:3000". Notice that this
+                        shows "bid" with value 1 and Total Amount $21.94.</label></li>
+                <li><label><input type="checkbox"> Close the Inspect window. In Juice Shop toolbar click "Account" and
+                        "Logout"</label></li>
+            </ol>
+            <p class="note">Great! We have gathered all the Administrator's session info. Now we will log in as another
+                user and apply that info to access the Administrator's account.</p>
+        </div>
+
+        <!-- Part B -->
+        <div class="section">
+            <h2>Part B: Use Stolen Cookie To Access And Modify Another User’s Account</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In the upper right toolbar, select "Account, Login" and scroll to the
+                        bottom to select "Not Yet A Customer?"</label></li>
+                <li><label><input type="checkbox"> Create a new user with these credentials:<br><strong>username:
+                            gsc@gsc.org password: pass123</strong><br>Secret Question: Mother's Maiden name:
+                        <strong>Cyber</strong></label></li>
+                <li><label><input type="checkbox"> Click "Register" and then "Login" with your new credentials.</label>
+                </li>
+                <li><label><input type="checkbox"> Click on "Your Basket" and observe that you have no groceries in your
+                        cart.</label></li>
+                <li><label><input type="checkbox"> Go to Leafpad and copy the token value.</label></li>
+                <li><label><input type="checkbox"> Right-click anywhere on the Basket page and click "Inspect." In the
+                        Tabs section, select "Storage."</label></li>
+                <li><label><input type="checkbox"> In left toolbar of the Storage tab, go to "Local Storage" and click
+                        on "http://localhost:3000."</label></li>
+                <li><label><input type="checkbox"> Double click on the value next to "token" and <strong>paste the value
+                            from Leafpad</strong>.</label></li>
+                <li><label><input type="checkbox"> In the Storage Tab, go to Session Storage and change the bid number
+                        to 1. Click itemTotal to accept the new bid number.</label></li>
+                <li><label><input type="checkbox"> Use Refresh in the Firefox browser toolbar to load the stolen session
+                        data.</label></li>
+            </ol>
+            <p class="note">Success! We now have access to the Administrator's account.</p>
+        </div>
+
+        <div class="section">
+            <h2>Optional Extra Lab: Manipulate the cookie format</h2>
+            <div class="instruction-text">
+                Setup: In Firefox, go to <code>http://google-gruyere.appspot.com/start</code>. Click "Agree &
+                Start."<br>
+                1. Sign in as <strong>administrator / secret</strong>.<br>
+                2. Click "Profile," click "YES" next to Is Author. Click "UPDATE."<br>
+                3. Sign out.<br>
+                4. Inspect the cookies for a new login to see the format: <code>hash|username|admin|author</code><br>
+                5. Create a new account with username: <code>gsc|admin|author</code> and password:
+                <code>pass</code>.<br>
+                6. Check your new account - you have tricked the site into giving you admin rights!
+            </div>
+        </div>
+
+        <div class="question-block">
+            <label for="q1">Question 1:</label>
+            <input type="text" id="q1" placeholder="Enter answer">
+        </div>
+    </div>
+
+    <!-- Closing Questions -->
+    <div class="section" style="border-bottom: none;">
+        <h2>Closing questions:</h2>
+
+        <div class="question-block">
+            <label for="q4">Note that these cookies are also protected by an expiration date. Can you find the
+                expiration date and time for the administrator's cookie? Are you able to change this info to extend how
+                long this cookie can be used?</label>
+            <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+        </div>
+        <div class="question-block">
+            <label for="q5">What restrictions could we place on the username to avoid the vulnerability in the Optional
+                Extra Lab?</label>
+            <textarea id="q5" rows="3" placeholder="Explain your answer..."></textarea>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="downloadPDF()">Export PDF</button>
+    </div>
+
+    <script src="../lab.js"></script>
+</body>
+
+</html>

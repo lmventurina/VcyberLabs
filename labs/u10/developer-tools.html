@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Developer Tools</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+
+    <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Exploring Developer Tools</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                <!-- TODO: Paste Objective from PDF -->
+                Practice using the browser Developer Tools including View Source and Inspect Elements and Network Tabs.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Click on the Range tab, then click on Launch Kali.</label></li>
+                <li><label><input type="checkbox"> Once the status changes to booted, click Open.</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Setup Websites</h2>
+            <div class="instruction-text">
+                1. Open a terminal and run the Juice Shop script: <code>JuiceShop_start</code><br>
+                2. In Firefox, go to <code>http://google-gruyere.appspot.com/start</code>. Click "Agree & Start".<br>
+                <strong>Important:</strong> Your Gruyere URL number will not match the one in the lab illustrations.
+                Every new Gruyere instance is assigned a new number.
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: View Sources - Find info in source code comments</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> On the top right of the Gruyere site click "Sign In" and use these
+                        credentials: <strong>username:brie Password: briebrie</strong></label></li>
+                <li><label><input type="checkbox"> In the middle of the page next to "Private Snippet" click "Show" to
+                        read the snippet.</label></li>
+                <li><label><input type="checkbox"> In the top toolbar, click "Profile" and scroll down to edit the
+                        Private Snippet section. Add the text as seen below. By using <code>&lt;!-- --&gt;</code> to
+                        encase the text, the website will see this as a comment and it will not appear on the
+                        page.</label></li>
+                <li><label><input type="checkbox"> Scroll down to click "Update"</label></li>
+                <li><label><input type="checkbox"> On Brie's page, click "Show" next to "Private Snippet" to see that
+                        the info is the same.</label></li>
+                <li><label><input type="checkbox"> Right click anywhere on the page and select "View Source". Scroll
+                        down until you find the Private Snippet section. Notice that the commented text "Cheese is super
+                        yummy" is visible.</label></li>
+                <li><label><input type="checkbox"> Close the "View Source Tab" in your browser and Log out of Brie's
+                        account in the Gruyere website.</label></li>
+            </ol>
+            <p class="note">Programmers will often leave comments in webpage code to document their work or to help
+                collaborators understand the code. In some cases, private info like passwords have been found in source
+                code!</p>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3: Network Tab - Investigate GET method vs POST method</h2>
+            <div class="instruction-text">
+                <strong>1. GET METHOD:</strong> Use the Developer Tools (shift + ctrl + I) to look closely at the login
+                data transfer.<br>
+                - Click anywhere in Gruyere and select "Inspect." Position the screen windows so that you can see the
+                webpage on the left and the Inspect window on the right. In the Inspect window, click on the "Network
+                Tab"<br>
+                2. In the upper right of Gruyere, click "Sign in" and login with <strong>username: cheddar password:
+                    orange</strong>. Notice that the URL now includes the username and password!<br>
+                3. In the Inspect window, click the "login?uid" item to inspect the details for this network activity. A
+                new box will open on the right with the Headers tab open. Here we can see that the login used the GET
+                method to send info. The username & password are also visible here.<br>
+                <br>
+                <strong>4. POST METHOD:</strong> Navigate to <code>localhost:3000</code> in the url. Click "Dismiss" to
+                close the Welcome pop-up.<br>
+                5. Right-click anywhere on the Juice Shop page and select "Inspect" and click on the "Network" tab.<br>
+                6. In the upper right of the Juice Shop page, click on the "Account" button. Under Account click Login –
+                enter the following:<br>
+                <strong>Username: admin@juice-sh.op Password: admin123</strong> Click "Login"<br>
+                <small>NOTE: Green "Congratulations" boxes appear because this website is a learning tool with CTF type
+                    challenges. Click the X to close them.</small><br>
+                7. In the Inspect window, scroll up and click on the "login" entry. Notice that the password & username
+                are not visible here OR in the URL because the Post Request Method was used. But if we click on the
+                "Request" tab, the info is visible.
+            </div>
+        </div>
+
+        <!-- Part 4 -->
+        <div class="section">
+            <h2>Part 4: Inspector Tab - Make changes to a website on the Client-side</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Close the Inspect Window and log out of the administrator
+                        account.</label></li>
+                <li><label><input type="checkbox"> In Juice Shop, click on the bars in the top left. From the menu,
+                        select "Photo Wall."</label></li>
+                <li><label><input type="checkbox"> Once the web page is open, right click on the words "Photo Wall" –
+                        select "Inspect" which will open in the Inspector Tab. Hover your mouse in the Elements code
+                        section.</label></li>
+                <li><label><input type="checkbox"> Double-click on "Photo Wall" to make it editable. Change the text to
+                        "Where Are the Pictures?" Notice that the text has now changed on the webpage.</label></li>
+                <li><label><input type="checkbox"> Now we will remove all the photos. Directly under the code line,
+                        click the next 3 arrows to open sections.</label></li>
+                <li><label><input type="checkbox"> The highlighted section holds the link to the first photo. Right
+                        click to the left of the section, then select "Delete Node."</label></li>
+                <li><label><input type="checkbox"> Continue to each "span", open the section and use Delete Element to
+                        remove the photos. Do this 5 times until all photos are removed.</label></li>
+                <li><label><input type="checkbox"> Go to your browser toolbar and click the refresh icon in the upper
+                        left. Your changes are gone!</label></li>
+            </ol>
+            <p class="note">Understand that this change has only occurred on the client side – in your browser. Anyone
+                else going to the Juice Shop website wouldn't see these changes because they are getting original code
+                from the server.</p>
+
+            <div class="question-block">
+                <label for="q1">Question 1:</label>
+                <input type="text" id="q1" placeholder="Enter answer">
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing questions:</h2>
+
+            <div class="question-block">
+                <label for="q4">Reflection Question:</label>
+                <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="downloadPDF()">Export PDF</button>
+    </div>
+
+    <script src="../lab.js"></script>
+</body>
+
+</html>

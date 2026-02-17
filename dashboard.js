@@ -115,7 +115,49 @@ const UNITS = [
             }
         ]
     },
-    { id: 10, title: "Web Application Security", subtitle: "Tier 2 Research", labs: [] },
+    {
+        id: 10,
+        title: "Web Application Security",
+        subtitle: "Using OWASP Juice Shop",
+        active: true,
+        labs: [
+            {
+                title: "Exploring Developer Tools",
+                id: "9.1.1",
+                url: "labs/u10/developer-tools.html",
+                icon: "code",
+                desc: "Learn to use browser developer tools to inspect and modify web page elements."
+            },
+            {
+                title: "Cookie Manipulation",
+                id: "9.2.1",
+                url: "labs/u10/cookie-manipulation.html",
+                icon: "cookie",
+                desc: "Understand session management and how cookie manipulation can lead to privilege escalation."
+            },
+            {
+                title: "Command Injection & XSS",
+                id: "9.2.2",
+                url: "labs/u10/command-injection.html",
+                icon: "terminal",
+                desc: "Execute arbitrary commands and inject scripts into vulnerable web applications."
+            },
+            {
+                title: "Basic SQL Commands",
+                id: "9.3.1",
+                url: "labs/u10/sql-basics.html",
+                icon: "database",
+                desc: "Master fundamental SQL queries to interact with and manage databases."
+            },
+            {
+                title: "Exploring SQL Injection",
+                id: "9.3.2",
+                url: "labs/u10/sql-injection.html",
+                icon: "shield-alert",
+                desc: "Exploit SQL injection vulnerabilities to bypass authentication and extract data."
+            }
+        ]
+    },
     { id: 11, title: "Applied Cryptography & Secure Communications", subtitle: "Tier 2 Research", labs: [] }
 ];
 

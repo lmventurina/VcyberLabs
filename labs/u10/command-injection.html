@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Injection & XSS</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+
+    <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Command Injection & XSS</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                <!-- TODO: Paste Objective from PDF -->
+                Examine how unrestricted user input to a website can provide threat actors with opportunities for
+                attacks on the server and website clients.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Launch Kali and Windows 7. Open Windows 7 when booted.</label></li>
+                <li><label><input type="checkbox"> Windows 7: Search for Network and Sharing Center. Change Public
+                        Network to <strong>Home Network</strong>.</label></li>
+                <li><label><input type="checkbox"> Kali: Open a terminal and run the DVWA script:
+                        <code>DVWA_start</code></label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Command Injection</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In Kali, open Firefox and navigate to
+                        <code>localhost/dvwa</code>.</label></li>
+                <li><label><input type="checkbox"> Login with <strong>username: admin | password:
+                            password</strong></label></li>
+                <li><label><input type="checkbox"> Scroll down and select "DVWA Security" on the left menu. Change
+                        security level to "Low" then click Submit.</label></li>
+                <li><label><input type="checkbox"> In left menu, click on "Command Injection"</label></li>
+                <li><label><input type="checkbox"> In the form field enter <code>127.0.0.1</code> and click "Submit."
+                        Notice that it ran a ping command.</label></li>
+                <li><label><input type="checkbox"> Enter this into the form: <code>;echo testing</code> click "Submit".
+                        Notice "testing" appears.</label></li>
+                <li><label><input type="checkbox"> Enter this text: <code>; cat /etc/passwd</code> click
+                        "Submit".</label></li>
+            </ol>
+            <p class="note">It returns the passwd file which gives us all the account names for this server. A malicious
+                actor would now try many other commands to see which ones would execute.</p>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Stored Cross-Site Scripting (XSS)</h2>
+            <h3>Configure Firefox Security settings:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Turn off Popup Blocker: Settings -> Privacy & Security -> Permissions
+                        -> unclick Block pop-up windows.</label></li>
+                <li><label><input type="checkbox"> Turn off HTTPOnly for cookies: Inspect -> Storage -> Cookies ->
+                        http://localhost. Change HTTPOnly for PHPSESSID from "true" to "false".</label></li>
+            </ol>
+            <h3>Attack steps:</h3>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In DVWA click on "XSS (Stored)."</label></li>
+                <li><label><input type="checkbox"> <strong>Test Script:</strong> Name: Darth. Message:
+                        <code>&lt;script&gt;alert('You are being hacked!')&lt;/script&gt;</code> Click "Sign Guestbook".
+                        Click OK on popup.</label></li>
+                <li><label><input type="checkbox"> <strong>Cookie Stealing Script:</strong> Click "Clear Guestbook".
+                        Name: Ivy. Message: <code>&lt;script&gt;alert('Hacked! '+document.cookie)&lt;/script&gt;</code>
+                        Click "Sign Guestbook".</label></li>
+                <li><label><input type="checkbox"> <strong>Verify on Victim (Windows 7):</strong> Open Chrome. Go to
+                        <code>&lt;Kali IP&gt;/dvwa</code>. Log in as <strong>gordonb / abc123</strong>.</label></li>
+                <li><label><input type="checkbox"> Set DVWA Security to Low.</label></li>
+                <li><label><input type="checkbox"> Turn off HTTPOnly cookies in Chrome (Inspect -> Applications ->
+                        Cookies -> Select PHPSESSID -> Uncheck HTTPOnly).</label></li>
+                <li><label><input type="checkbox"> Click on "XSS (Stored)". Notice the script executes
+                        immediately!</label></li>
+            </ol>
+            <p class="note">This attack works without the hacker needing to send a link. They just set up the script on
+                a forum, and ANY user who visits becomes a victim.</p>
+        </div>
+
+        <div class="question-block">
+            <label for="q1">Question 1:</label>
+            <input type="text" id="q1" placeholder="Enter answer">
+        </div>
+    </div>
+
+    <!-- Closing Questions -->
+    <div class="section" style="border-bottom: none;">
+        <h2>Closing questions:</h2>
+
+        <div class="question-block">
+            <label for="q4">Reflection Question:</label>
+            <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="downloadPDF()">Export PDF</button>
+    </div>
+
+    <script src="../lab.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring SQL Injection</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+
+    <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Exploring SQL Injection</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                <!-- TODO: Paste Objective from PDF -->
+                Examine how unrestricted user input to a website can provide threat actors with opportunities for
+                attacks on the server and website clients.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Launch the required environment (Kali)</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Learn</h2>
+            <div class="instruction-text">
+                On your PC or Kali VM, go to <code>https://www.hacksplaining.com/exercises/sql-injection</code>. Work
+                through the short exercise to reinforce your understanding.
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Practice</h2>
+            <div class="instruction-text">
+                <strong>1. Examine the Chinook SQL database:</strong><br>
+                <code>sqlite3 /home/kali/CourseFiles/IntroCybersecurity/chinook.db</code><br>
+                <code>.schema employees</code><br>
+                <code>SELECT EmployeeID FROM employees;</code> (Note there are 8 employees)<br>
+                <code>.exit</code><br><br>
+
+                <strong>2. Create a Python script to test authentication:</strong><br>
+                Open Text Editor. Type the code below and save as <code>Login.py</code> in
+                <code>/home/kali/Documents</code>.<br>
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">
+import sqlite3
+# Connect to the database
+con = sqlite3.connect('/home/kali/CourseFiles/IntroCybersecurity/chinook.db')
+cur = con.cursor()
+# Construct the SQL query
+query = "SELECT firstname, lastname FROM employees WHERE EmployeeID = '' AND password = ''"
+# Execute the query
+cur.execute(query)
+# Fetch the result 
+employee_info=(cur.fetchall())
+# Check if the result is TRUE
+if employee_info:
+ for x in employee_info:
+           print(x) 
+else:
+ print("Employee not found.")
+</pre>
+                <strong>3. Test the script:</strong> <code>python3 Login.py</code> (Should say "Employee not
+                found")<br><br>
+
+                <strong>4. Test successful authentication:</strong><br>
+                Change query to:
+                <code>query = "SELECT firstname, lastname FROM employees WHERE EmployeeID = '1' AND password = '14TheMoney$'"</code><br>
+                Result should be: <code>('Andrew', 'Adams')</code><br><br>
+
+                <strong>5. Use SQL injection to bypass credential check:</strong><br>
+                Change query to:
+                <code>query = "SELECT firstname, lastname FROM employees WHERE EmployeeID = '1' AND password = '' OR '1=1'"</code><br>
+                Result should be ALL 8 employees because 1=1 is always TRUE.<br><br>
+
+                <strong>6. Target specific user:</strong><br>
+                <code>query = "SELECT firstname, lastname FROM employees WHERE EmployeeID = '' AND password = '' OR '1=1' AND EmployeeID = '5'"</code><br><br>
+
+                <strong>7. UNION Attack (Extract data):</strong><br>
+                <code>query = "SELECT firstname, lastname FROM employees WHERE EmployeeID = '' AND password = '' OR '1=1' UNION SELECT password, email FROM employees"</code><br>
+                This dumps all passwords and emails!<br><br>
+
+                <strong>8. Commenting Attack:</strong><br>
+                <code>query = "SELECT firstname, lastname FROM employees WHERE EmployeeID = '' OR 1=1--' AND password = ''"</code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Optional Extension</h2>
+            <div class="instruction-text">
+                Try SQL Injection challenges in the PicoCTF Gym (SQLiLite, More SQL).
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing questions:</h2>
+
+            <div class="question-block">
+                <label for="q4">Reflection Question:</label>
+                <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="downloadPDF()">Export PDF</button>
+    </div>
+
+    <script src="../lab.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SQL Commands</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+
+    <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Basic SQL Commands</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                <!-- TODO: Paste Objective from PDF -->
+                Understand the structure of a SQL database and the basic SQLITE commands used to manipulate data.
+            </div>
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Click on the Range tab, then launch Kali.</label></li>
+                <li><label><input type="checkbox"> Once the status changes to booted, click open.</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Basic Queries</h2>
+            <div class="instruction-text">
+                1. Start a Terminal.<br>
+                2. Open the database: <code>sqlite3 /home/kali/CourseFiles/IntroCybersecurity/chinook.db</code><br>
+                3. Identify tables: <code>.tables</code><br>
+                4. Identify table structure: <code>.schema albums</code><br>
+            </div>
+
+            <h3>Query Practice</h3>
+            <div class="instruction-text">
+                <strong>Format:</strong> <code>SELECT column FROM table;</code> (Always end with a ;)<br><br>
+
+                <strong>5. Simple Select:</strong><br>
+                <code>SELECT EmployeeID, LastName FROM employees;</code><br>
+                <code>SELECT * FROM albums;</code><br><br>
+
+                <strong>6. Sorting (ORDER BY):</strong><br>
+                <code>SELECT * FROM artists ORDER BY Name ASC;</code><br>
+                <code>SELECT TrackID, Name, Composer FROM tracks ORDER BY composer ASC;</code><br><br>
+
+                <strong>7. Conditionals (WHERE):</strong><br>
+                <code>SELECT Name, UnitPrice FROM tracks WHERE UnitPrice > 1;</code><br>
+                <code>SELECT FirstName, LastName FROM customers WHERE State = 'CA';</code><br><br>
+
+                <strong>8. Advanced Logic (AND/OR/LIKE):</strong><br>
+                <code>SELECT CustomerID, BillingCountry, Total FROM invoices WHERE BillingCountry != 'USA' AND Total > 20;</code><br>
+                <code>SELECT title FROM albums WHERE Title LIKE '%the%' OR Title LIKE '%of%';</code>
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Practice Questions</h2>
+            <div class="question-block">
+                <label for="q1">1. What is the number of employees?</label>
+                <input type="text" id="q1" placeholder="Enter number">
+            </div>
+            <div class="question-block">
+                <label for="q2">2. When LastName is sorted ascending, what is the full name of the employee listed
+                    last?</label>
+                <input type="text" id="q2" placeholder="Enter name">
+            </div>
+            <div class="question-block">
+                <label for="q3">3. What is the password for employee Steve Johnson?</label>
+                <input type="text" id="q3" placeholder="Enter password">
+            </div>
+            <div class="question-block">
+                <label for="q4">4. What are the TrackIDs of all tracks that have Metallica as the composer?</label>
+                <input type="text" id="q4" placeholder="Enter IDs">
+            </div>
+            <div class="question-block">
+                <label for="q5">5. What is the name of the customer who is from London and uses a gmail address?</label>
+                <input type="text" id="q5" placeholder="Enter name">
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing questions:</h2>
+
+            <div class="question-block">
+                <label for="q4">Reflection Question:</label>
+                <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="downloadPDF()">Export PDF</button>
+    </div>
+
+    <script src="../lab.js"></script>
+</body>
+
+</html>
