@@ -74,42 +74,42 @@ const UNITS = [
             {
                 title: "SYN Flood Attack",
                 id: "8.1.2",
-                url: "labs/syn-flood.html",
+                url: "labs/u09/syn-flood.html",
                 icon: "zap",
                 desc: "Explore the mechanics of TCP handshake exploitation and resource exhaustion through SYN flooding."
             },
             {
                 title: "ARP Spoofing & AiTM",
                 id: "8.2.1",
-                url: "labs/arp-spoofing.html",
+                url: "labs/u09/arp-spoofing.html",
                 icon: "network",
                 desc: "Analyze ARP vulnerabilities and execute Man-in-the-Middle attacks to intercept traffic."
             },
             {
                 title: "SSH Tunneling",
                 id: "8.3.1",
-                url: "labs/ssh-tunneling.html",
+                url: "labs/u09/ssh-tunneling.html",
                 icon: "lock",
                 desc: "Bypass firewall restrictions and secure traffic using local and remote SSH port forwarding."
             },
             {
                 title: "Metasploit Framework",
                 id: "8.4.1",
-                url: "labs/metasploit.html",
+                url: "labs/u09/metasploit.html",
                 icon: "terminal-square",
                 desc: "Master the world's most used penetration testing framework to scan and exploit targets."
             },
             {
                 title: "Exfiltration with Mimikatz",
                 id: "8.4.2",
-                url: "labs/mimikatz.html",
+                url: "labs/u09/mimikatz.html",
                 icon: "cat",
                 desc: "Extract plaintext passwords, hashes, and Kerberos tickets from memory using Mimikatz."
             },
             {
                 title: "Hunting a Backdoor",
                 id: "8.4.3",
-                url: "labs/hunting-backdoor.html",
+                url: "labs/u09/hunting-backdoor.html",
                 icon: "crosshair",
                 desc: "Investigate compromised systems to identify and remove persistent backdoor mechanisms."
             }
