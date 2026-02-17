@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.3.1 - SSH Tunneling for Privacy</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #6c757d;
+            --bg: #f8f9fa;
+            --surface: #ffffff;
+            --border: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Header Styles */
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: #f1f3f5;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9em;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .section h2 {
+            font-size: 18px;
+            color: var(--primary);
+            background: #e7f5ff;
+            padding: 8px 12px;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .question-block {
+            margin: 20px 0;
+        }
+
+        .instruction-text {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        /* Image Paste Zone */
+        .image-zone {
+            border: 2px dashed #adb5bd;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .image-zone:hover {
+            border-color: var(--primary);
+            background-color: #e7f5ff;
+        }
+
+        .image-zone.has-image {
+            border-style: solid;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        .image-zone p {
+            text-align: center;
+            color: var(--secondary);
+            pointer-events: none;
+        }
+
+        .image-zone img {
+            max-width: 100%;
+            max-height: 500px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #004494;
+        }
+
+        /* Dashboard Link */
+        .dashboard-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9em;
+            background: white;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+        }
+
+        .dashboard-link:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            .controls,
+            .dashboard-link {
+                display: none;
+            }
+
+            .image-zone {
+                border: 1px solid #ddd;
+            }
+
+            .image-zone p {
+                display: none;
+                /* Hide placeholder text on print if empty */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Lab 8.3.1 - SSH Tunneling for Privacy</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Demonstrate how VPNs use tunneling to provide privacy for online browsing and data transfers.
+            </div>
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
+                <li>Launch Kali and Windows Server 22. Open Kali.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1 - Configure SSH & Web Server (Kali)</h2>
+            <div class="instruction-text">
+                1. <strong>Configure SSH settings:</strong> Open a Terminal in Kali.
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo nano /etc/ssh/sshd_config</pre>
+                Scroll down to change <code>PasswordAuthentication</code> to <code>Yes</code>.<br>
+                Press <strong>CTRL-X</strong> then <strong>Y</strong> then <strong>[Enter]</strong> to save.<br><br>
+                2. Set the password for user 'kali':
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo passwd kali</pre>
+                Enter <code>pass123</code> and confirm <code>pass123</code>.<br><br>
+                3. Restart SSH service:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo service sshd restart</pre>
+                <br>
+                4. <strong>Set up a website server:</strong> In the same terminal type:
+                <code>DVWA_start</code>
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2 - HTTP Traffic Analysis (No Tunnel)</h2>
+            <div class="instruction-text">
+                1. Switch to <strong>Windows Server 22</strong>. Open Wireshark and start capturing (blue fin).<br>
+                2. Open Chrome and go to: <code>&lt;Kali IP address&gt;/dvwa</code><br>
+                3. Login with username: <strong>admin</strong> and password: <strong>password</strong>.<br>
+                4. Stop Wireshark (red square). Filter for: <code>ip.dst_host==&lt;Kali IP address&gt;</code><br>
+                5. Find an HTTP POST packet, Right-click > Follow | HTTP Stream.
+            </div>
+
+            <div class="question-block">
+                <label>6. Paste a screenshot of the HTTP Stream showing the readable username and password:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-1">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">Observation: This confirms that without
+                    encryption, people can see what you enter on that website. No privacy!!!!</p>
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3 - Set up SSH Tunnel (Windows Server 22)</h2>
+            <div class="instruction-text">
+                1. Search for ‘Putty’ and select the PuTTy App.<br>
+                2. <strong>Host Name</strong> = <code>&lt;Kali IP Address&gt;</code><br>
+                3. In the left column, select <strong>SSH | Tunnels</strong>.<br>
+                4. <strong>Source port</strong> = <code>5678</code><br>
+                5. <strong>Destination</strong> = <code>&lt;Kali IP Address&gt;:80</code><br>
+                6. Leave defaults, click <strong>Add</strong>. Click <strong>Open</strong>. Accept Security Alert.<br>
+                7. Login with kali / pass123. The tunnel is now active. Keep the terminal open.
+            </div>
+
+            <div class="question-block">
+                <label>8. Paste a screenshot of the Putty Tunnel configuration or the active terminal:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-2">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 4 -->
+        <div class="section">
+            <h2>Part 4 - Verify Tunnel Privacy</h2>
+            <div class="instruction-text">
+                1. Open Wireshark, start capture.<br>
+                2. Open Chrome and go to: <code>localhost:5678/dvwa</code><br>
+                3. Login (admin/password).<br>
+                4. Stop capture. Filter: <code>ip.dst_host==&lt;Kali IP Address&gt;</code><br>
+                5. Right-click packet > Follow | TCP Stream.
+            </div>
+
+            <div class="question-block">
+                <label>6. Paste a screenshot of the TCP Stream showing encrypted (jumbled) text:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-3">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">Observation: You cannot see the website
+                    visited or login info. Total privacy!!</p>
+            </div>
+        </div>
+
+        <!-- Closing -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing Note</h2>
+            <div class="instruction-text">
+                This SSH tunnel was set up just to browse the DVWA website hosted on the Kali VM, it would not provide
+                access to other websites. A VPN expands this technique to tunnel all your web browsing or other digital
+                activity like streaming or data transfers.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <script>
+        // Logic to handle image pasting in specific zones
+        const imageZones = document.querySelectorAll('.image-zone');
+
+        imageZones.forEach(zone => {
+            zone.addEventListener('paste', (e) => {
+                e.preventDefault();
+
+                const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+                let blob = null;
+
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf("image") === 0) {
+                        blob = items[i].getAsFile();
+                        break;
+                    }
+                }
+
+                if (blob) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        // Clear current content
+                        zone.innerHTML = '';
+                        zone.classList.add('has-image');
+
+                        // Create image element
+                        const img = document.createElement('img');
+                        img.src = event.target.result;
+                        zone.appendChild(img);
+                    };
+                    reader.readAsDataURL(blob);
+                } else {
+                    alert("No image found in clipboard. Please take a screenshot first, then click the box and press Ctrl+V.");
+                }
+            });
+
+            // Focus styling assistance
+            zone.addEventListener('focus', () => {
+                zone.style.borderColor = '#0056b3';
+            });
+            zone.addEventListener('blur', () => {
+                if (!zone.classList.contains('has-image')) {
+                    zone.style.borderColor = '#adb5bd';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

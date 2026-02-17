@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.2.1 - ARP Spoofing & AiTM</title>
+    <link rel="stylesheet" href="lab.css">
+</head>
+
+<body>
+
+    <a href="../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Lab 8.2.1 - ARP Spoofing & AiTM</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Investigate the methods of using Arp Poisoning to affect the CIA of network devices and data.
+            </div>
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
+                <li>Launch Kali, Ubuntu, Windows7. Open Windows 7 and change Network to Home.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1 - Examine normal communications</h2>
+            <div class="instruction-text">
+                1. In Kali, open a terminal. Gather MAC address information for all devices in the network:
+                <ul>
+                    <li>Type <code>ping &lt;Ubuntu IP Address&gt; -c 5</code></li>
+                    <li>Type <code>ping &lt;Windows 7 IP Address&gt; -c 5</code></li>
+                    <li>Type <code>arp -a</code></li>
+                    <li>Type <code>ifconfig</code></li>
+                </ul>
+                From the results, fill in the chart below:
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1.5fr 1.5fr; gap: 10px; margin-bottom: 20px;">
+                <div style="font-weight: bold;">OS Name</div>
+                <div style="font-weight: bold;">IP Address</div>
+                <div style="font-weight: bold;">MAC Address</div>
+
+                <div>Ubuntu</div>
+                <input type="text" placeholder="Ubuntu IP">
+                <input type="text" placeholder="Ubuntu MAC">
+
+                <div>Windows 7</div>
+                <input type="text" placeholder="Win7 IP">
+                <input type="text" placeholder="Win7 MAC">
+
+                <div>Kali</div>
+                <input type="text" placeholder="Kali IP">
+                <input type="text" placeholder="Kali MAC">
+            </div>
+
+            <div class="instruction-text">
+                2. Move to Ubuntu. Open a terminal and use the command <code>sudo wireshark</code>. Start capturing.<br>
+                3. Open a terminal (on Ubuntu) and ping Windows 7: <code>ping &lt;Windows 7 IP&gt; -c 5</code>.<br>
+                4. Stop Wireshark capture. Filter for <code>icmp</code>. Check for normal packet delivery. Clear
+                filter.<br>
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2 - Setup ARP spoofing</h2>
+            <div class="instruction-text">
+                <strong>Arpspoof</strong> is an ARP poisoning tool.<br>
+                Syntax:
+                <code>arpspoof -i &lt;interface&gt; -t &lt;target host IP&gt; &lt;ip to intercept for&gt;</code><br><br>
+                1. START Wireshark again on Ubuntu (Continue without Saving).<br>
+                2. START Wireshark on Kali: <code>sudo wireshark</code>.<br>
+                3. Use arpspoof on Kali to poison the Ubuntu arp cache:
+                <pre
+                    style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo arpspoof -i eth0 -t &lt;Ubuntu IP&gt; &lt;Windows 7 IP&gt;</pre>
+                Let it run for 10-12 packets, then <strong>CTRL+C</strong> to stop.<br>
+                4. STOP Wireshark on both Ubuntu and Kali.
+            </div>
+
+            <div class="question-block">
+                <label>5. In Kali Wireshark filter bar type <code>arp</code>. Paste a screenshot of the ARP reply
+                    packets produced by arpspoof with false MAC address information:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-1">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <label>6. In Ubuntu Wireshark filter bar type <code>arp</code>. Paste a screenshot of any ARP
+                    packets:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-2">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <label for="q3">7. In Ubuntu terminal type <code>arp</code>. Are there any IP addresses that have the
+                    same MAC address?</label>
+                <input type="text" id="q3" placeholder="Enter your observation">
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3 - Analyze Wireshark Capture</h2>
+            <div class="instruction-text">
+                On Kali, open Wireshark and open file: <code>/home/kali/CourseFiles/IntroCybersecurity/ARP.pcapng</code>
+            </div>
+
+            <div class="question-block">
+                <label for="q3a">1. Which device is the attacker?</label>
+                <input type="text" id="q3a" placeholder="Enter IP or Device Name">
+            </div>
+            <div class="question-block">
+                <label for="q3b">2. Which devices are the two victims?</label>
+                <input type="text" id="q3b" placeholder="Enter IP or Device Names">
+            </div>
+            <div class="question-block">
+                <label for="q3c">3. What are the username and password that were intercepted?</label>
+                <input type="text" id="q3c" placeholder="Enter credentials">
+            </div>
+            <div class="question-block">
+                <label for="q3d">4. Bonus: why is it NOT possible to perform an ARP poisoning attack from this network
+                    to a device with IP address 172.1.2.3?</label>
+                <textarea id="q3d" rows="2" placeholder="Explain answer"></textarea>
+            </div>
+        </div>
+
+        <!-- Closure -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closure</h2>
+
+            <div class="question-block">
+                <label for="q4">1. Spoofing as a DoS: What does DoS stand for?</label>
+                <input type="text" id="q4" placeholder="Enter answer">
+            </div>
+            <div class="question-block">
+                <label for="q5">2. Spoofing as an AiTM: What does AiTM stand for?</label>
+                <input type="text" id="q5" placeholder="Enter answer">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <script src="lab.js"></script>
+</body>
+
+</html>

@@ -15,21 +15,9 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Global Assets -->
+    <link rel="stylesheet" href="labs/dashboard.css">
     <link rel="icon" type="image/jpeg" href="images/images.jpg">
-
-    <style>
-        .lab-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .lab-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(56, 189, 248, 0.5);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-    </style>
 </head>
 
 <body class="min-h-screen">
@@ -57,7 +45,7 @@
 
     <main class="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <!-- Hero Section -->
-        <section class="mb-20">
+        <section class="mb-20 text-center md:text-left">
             <div class="max-w-3xl">
                 <div
                     class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-[10px] font-black uppercase tracking-widest mb-6">
@@ -75,195 +63,15 @@
 
         <!-- Lab Modules Grid -->
         <section>
-            <div class="flex items-center justify-between mb-12">
+            <div class="flex items-center justify-between mb-16">
                 <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Available Modules</h3>
-                    <p class="text-slate-500 text-sm italic">Select a lab sequence to begin mission simulation</p>
-                </div>
-                <div class="flex gap-4">
-                    <button
-                        class="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-all">
-                        <i data-lucide="layout-grid" class="w-5 h-5"></i>
-                    </button>
-                    <button
-                        class="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white transition-all">
-                        <i data-lucide="list" class="w-5 h-5"></i>
-                    </button>
+                    <h3 class="text-2xl font-bold text-white mb-2">Curriculum Units</h3>
+                    <p class="text-slate-500 text-sm italic">Categorized mission path (Units 1-11)</p>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Lab Card 1: SYN Flood -->
-                <a href="labs/syn-flood.html" class="lab-card group glass-panel p-8 block relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <i data-lucide="zap" class="w-32 h-32 text-red-500"></i>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center border border-red-500/20 mb-6">
-                            <i data-lucide="zap" class="text-red-500 w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-red-500/80 uppercase tracking-widest block mb-2">Lab
-                            8.1.2 // DoS</span>
-                        <h4 class="text-xl font-bold text-white mb-4 group-hover:text-sky-400 transition-colors">SYN
-                            Flood Attack</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                            Explore the mechanics of TCP handshake exploitation and resource exhaustion through SYN
-                            flooding.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Active
-                                Simulation</span>
-                            <div
-                                class="flex items-center gap-2 text-sky-400 text-xs font-black uppercase tracking-widest">
-                                ENTER LAB <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Lab Card 2: ARP Spoofing -->
-                <div
-                    class="lab-card group glass-panel p-8 relative overflow-hidden opacity-80 hover:opacity-100 cursor-not-allowed">
-                    <div
-                        class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span
-                            class="px-4 py-2 rounded-full bg-slate-900 border border-white/10 text-[10px] font-black text-white tracking-widest">UNDER
-                            DEVELOPMENT</span>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center border border-orange-500/20 mb-6">
-                            <i data-lucide="ghost" class="text-orange-500 w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-orange-500/80 uppercase tracking-widest block mb-2">Lab
-                            8.2.1 // MiTM</span>
-                        <h4 class="text-xl font-bold text-white mb-4">ARP Spoofing</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                            Analyze address resolution protocol vulnerabilities and Man-in-the-Middle attack vectors.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Wait-listed</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lab Card 3: SSH Tunneling -->
-                <div
-                    class="lab-card group glass-panel p-8 relative overflow-hidden opacity-80 hover:opacity-100 cursor-not-allowed">
-                    <div
-                        class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span
-                            class="px-4 py-2 rounded-full bg-slate-900 border border-white/10 text-[10px] font-black text-white tracking-widest">UNDER
-                            DEVELOPMENT</span>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center border border-purple-500/20 mb-6">
-                            <i data-lucide="link-2" class="text-purple-500 w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-purple-500/80 uppercase tracking-widest block mb-2">Lab
-                            8.3.1 // Encryption</span>
-                        <h4 class="text-xl font-bold text-white mb-4">SSH Tunneling</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                            Implement secure data conduits and bypass firewall restrictions using encrypted SSH tunnels.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span
-                                class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Wait-listed</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lab Card 4: Metasploit -->
-                <div
-                    class="lab-card group glass-panel p-8 relative overflow-hidden opacity-80 hover:opacity-100 cursor-not-allowed">
-                    <div
-                        class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span
-                            class="px-4 py-2 rounded-full bg-slate-900 border border-white/10 text-[10px] font-black text-white tracking-widest">COMING
-                            SOON</span>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center border border-emerald-500/20 mb-6">
-                            <i data-lucide="terminal" class="text-emerald-500 w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-emerald-500/80 uppercase tracking-widest block mb-2">Lab
-                            8.4.1 // Exploitation</span>
-                        <h4 class="text-xl font-bold text-white mb-4">Exploring Metasploit</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                            Navigate the industry-standard exploitation framework to identify and validate system
-                            weaknesses.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Scheduled Q1
-                                2026</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lab Card 5: MimiKatz -->
-                <div
-                    class="lab-card group glass-panel p-8 relative overflow-hidden opacity-80 hover:opacity-100 cursor-not-allowed">
-                    <div
-                        class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span
-                            class="px-4 py-2 rounded-full bg-slate-900 border border-white/10 text-[10px] font-black text-white tracking-widest">COMING
-                            SOON</span>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center border border-yellow-500/20 mb-6">
-                            <i data-lucide="fingerprint" class="text-yellow-500 w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-yellow-500/80 uppercase tracking-widest block mb-2">Lab
-                            8.4.2 // Exfiltration</span>
-                        <h4 class="text-xl font-bold text-white mb-4">MimiKatz Post-Exploit</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                            Understand credential harvesting and post-exploitation techniques using MimiKatz.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Scheduled Q1
-                                2026</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lab Card 6: BackDoor Detection -->
-                <div
-                    class="lab-card group glass-panel p-8 relative overflow-hidden opacity-80 hover:opacity-100 cursor-not-allowed">
-                    <div
-                        class="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span
-                            class="px-4 py-2 rounded-full bg-slate-900 border border-white/10 text-[10px] font-black text-white tracking-widest">COMING
-                            SOON</span>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div
-                            class="w-12 h-12 bg-rose-500/10 rounded-xl flex items-center justify-center border border-rose-500/20 mb-6">
-                            <i data-lucide="radar" class="text-rose-500 w-6 h-6"></i>
-                        </div>
-                        <span class="text-[10px] font-mono text-rose-500/80 uppercase tracking-widest block mb-2">Lab
-                            8.4.3 // Analysis</span>
-                        <h4 class="text-xl font-bold text-white mb-4">Hunting a Backdoor</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                            Practice threat hunting techniques to identify persistent backdoors and unauthorized access
-                            points.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">Scheduled Q2
-                                2026</span>
-                        </div>
-                    </div>
-                </div>
+            <div id="unit-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Data-driven generation happens here -->
             </div>
         </section>
     </main>
@@ -294,11 +102,8 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-    </script>
+    <!-- Global Logic -->
+    <script src="labs/dashboard.js"></script>
 </body>
 
 </html>

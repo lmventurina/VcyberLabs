@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.1.2 - SYN Flood DoS Attack</title>
+    <link rel="stylesheet" href="lab.css">
+</head>
+
+<body>
+
+    <a href="../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Lab 8.1.2 - SYN Flood DoS Attack</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Demonstrate how a Denial of Service attack affects availability of services and data.
+            </div>
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
+                <li>Open the Kali Linux and Windows 7 environments</li>
+                <li><strong>Select a partner</strong> for this lab. Select one person to be ‘STUDENT1’ and the other to
+                    be ‘STUDENT2’.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1 - Normal web connection</h2>
+            <div class="instruction-text">
+                1. STUDENT1 and STUDENT2, both open terminals and identify IP addresses for their Kali VMs.<br>
+                2. STUDENT2 on your Kali VM in the terminal view the current network connections by typing:
+                <code>netstat -atn | less</code> (press the space bar to page through the results).
+            </div>
+
+            <div class="question-block">
+                <label for="q1">1. You should see one connection for which the State column shows "ESTABLISHED." What is
+                    the source IP address (Foreign Address) for this connection?</label>
+                <input type="text" id="q1" placeholder="Enter IP Address">
+                <p style="font-size: 0.8em; color: #666; margin-top: 5px;">This is the Cyber.org Range server IP address
+                    and the connection makes it possible for you to access the VM from your PC.</p>
+            </div>
+
+            <div class="question-block">
+                <label>3. Take a screenshot of the netstat output and paste below - this is a normal connection
+                    state.</label>
+                <div class="image-zone" tabindex="0" id="img-zone-1">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="instruction-text">
+                4. On STUDENT2 Kali, press the Q key to exit netstat.
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2 - SYN FLOOD</h2>
+            <div class="instruction-text">
+                The image below gives an overview of how the Attacker will flood the Victim with so many SYN packets
+                that the victim’s resources are overwhelmed, and it eventually crashes, making it unavailable to the
+                user or any connected PCs.<br><br>
+                <strong>Observe a SYN flood of packets from STUDENT1 Kali to STUDENT2 Kali</strong><br>
+                1. Student1 open a terminal on your Kali VM. Use the hping3 tool to send a SYN flood to the STUDENT2
+                Kali device by entering this command:
+                <pre
+                    style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo hping3 --flood -S -p 22 &lt;S2 Kali IP Address&gt;</pre>
+
+                <strong>Command translation:</strong><br>
+                <code>--flood</code> = send packets at the attacker computer’s top speed.<br>
+                <code>-S</code> = SYN flag set in the packet.<br>
+                <code>-p 22</code> = send packets to this port number<br><br>
+
+                2. STUDENT2, on your Kali VM open a terminal and start netstat again but this time add the -c for
+                continuous mode:
+                <code>netstat -atn -c</code>
+            </div>
+
+            <div class="question-block">
+                <label>You will see a constant stream of “SYN_RECV” packets coming in. Take a screenshot of the netstat
+                    output with multiple SYN _RECV packets and paste below:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-2">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+
+            <div class="instruction-text">
+                3. STUDENT1 and STUDENT2, stop the activity by entering <strong>CTRL-C</strong> in each Kali terminal.
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3 - Denial of Service (DoS)</h2>
+            <div class="instruction-text">
+                1. STUDENT2 switch to your Windows7 VM.<br>
+                2. Install the Clock Gadget (Start | Clock | Add to desktop). Double click to select Clock. Close Gadget
+                Gallery.<br>
+                3. Right-click on the Clock and select “Options.”<br>
+                4. KEEP the first clock type. Check “Show the Second Hand”. Click “OK.”<br>
+                We will use the second hand on the clock to identify when the Win7 system is slowing down or freezing
+                from the SYN Flood.<br><br>
+
+                5. STUDENT1 in the terminal on your Kali VM, use the hping3 tool to send a SYN flood with large packets
+                to the STUDENT2 Windows device by entering this NEW hping3 command:
+                <pre
+                    style="background:#f4f4f4; padding:10px; border-radius:4px;">sudo hping3 --flood -d 250 -S -p 80 &lt;S2 Win7 IP Address&gt;</pre>
+
+                <strong>Command translation:</strong><br>
+                <code>-d 250</code> = packet size 250 data bytes<br>
+                <code>-p 80</code> = send packets to this port number<br><br>
+
+                6. Student2, look at the Win7 Clock and notice that the second hand is stuttering and sometimes
+                stopping. Try clicking on the Start Button or open Chrome – these will be unresponsive as the system
+                freezes.<br>
+                7. Student 1 stop the SYN Flood activity by entering <strong>CTRL-C</strong> in your Kali terminal.
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing questions:</h2>
+
+            <div class="question-block">
+                <label for="q4">Which part of CIA was affected by this SYN Flood Denial of Service attack?</label>
+                <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+            </div>
+
+            <div class="question-block">
+                <label for="q5">What method could be used to mitigate against this SYN Flood DoS attack?</label>
+                <textarea id="q5" rows="3" placeholder="Explain a mitigation strategy..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <script src="lab.js"></script>
+</body>
+
+</html>

