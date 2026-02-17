@@ -127,14 +127,21 @@ function renderUnits() {
     grid.innerHTML = UNITS.map(unit => `
         <div class="unit-card glass-panel p-8 ${unit.active ? 'border-sky-500/20 ring-1 ring-sky-500/10' : 'opacity-40 hover:opacity-60 transition-opacity'} flex flex-col justify-between">
             <div class="unit-badge ${unit.active ? '!text-sky-400 !border-sky-500/40' : ''}">UNIT ${String(unit.id).padStart(2, '0')}</div>
-            <div>
-                <h3 class="text-xl font-bold ${unit.active ? 'text-white' : 'text-slate-300'} mb-2">${unit.title}</h3>
-                <p class="text-[10px] ${unit.active ? 'text-sky-500 font-mono' : 'text-slate-500'} uppercase tracking-widest mb-6 border-b border-white/5 pb-4">${unit.subtitle}</p>
+            
+            <div class="mb-6 cursor-pointer" onclick="toggleUnit(${unit.id})">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold ${unit.active ? 'text-white' : 'text-slate-300'} mb-2">${unit.title}</h3>
+                        <p class="text-[10px] ${unit.active ? 'text-sky-500 font-mono' : 'text-slate-500'} uppercase tracking-widest pb-2">${unit.subtitle}</p>
+                    </div>
+                    <i data-lucide="chevron-down" id="chevron-${unit.id}" class="w-5 h-5 text-slate-500 transition-transform duration-300 ${unit.active ? 'rotate-180' : ''}"></i>
+                </div>
             </div>
             
-            <div class="space-y-4">
+            <div id="labs-container-${unit.id}" class="labs-container space-y-4 ${unit.active ? 'expanded' : ''}">
+                <div class="pt-4 border-t border-white/5">
                 ${unit.labs.length > 0 ? unit.labs.map(lab => `
-                    <a href="${lab.url}" class="lab-card group bg-sky-500/5 border border-sky-500/10 p-5 rounded-2xl block relative overflow-hidden">
+                    <a href="${lab.url}" class="lab-card group bg-sky-500/5 border border-sky-500/10 p-5 rounded-2xl block relative overflow-hidden mb-4 last:mb-0">
                         <i data-lucide="${lab.icon}" class="absolute -bottom-2 -right-2 w-16 h-16 text-red-500/10 group-hover:text-red-500/20 transition-colors"></i>
                         <div class="flex items-center gap-3 mb-3">
                             <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center border border-red-500/30">
@@ -158,11 +165,28 @@ function renderUnits() {
                         </div>
                     </div>
                 `}
-                
-                ${unit.active && unit.id === 9 ? '' : ''}
+                </div>
             </div>
         </div>
     `).join('');
+
+    // Refresh icons after render
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function toggleUnit(unitId) {
+    const container = document.getElementById(`labs-container-${unitId}`);
+    const chevron = document.getElementById(`chevron-${unitId}`);
+
+    if (container) {
+        container.classList.toggle('expanded');
+    }
+
+    if (chevron) {
+        chevron.classList.toggle('rotate-180');
+    }
 }
 
 // Initializer
