@@ -417,3 +417,19 @@ textarea:focus {
         color: inherit;
     }
 }
+
+/* Specific styles for html2pdf export */
+.pdf-export-mode {
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    max-width: 715px !important;
+    /* A4 (210mm) - 20mm margins = 190mm ~= 718px */
+    width: 715px !important;
+    border-radius: 0 !important;
+}
+
+.pdf-export-mode header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}

@@ -135,15 +135,18 @@ async function downloadPDF() {
 
     // Configure options
     const opt = {
-        margin: [10, 10, 10, 10],
+        margin: [10, 10, 10, 10], // 10mm margins
         filename: document.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
     // Hide controls for capture
     controls.style.display = 'none';
+
+    // Apply PDF specific styles
+    container.classList.add('pdf-export-mode');
 
     // Generate PDF
     try {
@@ -152,8 +155,9 @@ async function downloadPDF() {
         console.error('PDF generation failed:', err);
         alert('Failed to generate PDF. Please try "Ctrl+P" as a backup.');
     } finally {
-        // Restore controls
+        // Restore controls and styles
         controls.style.display = 'flex';
-        controls.querySelector('button').innerText = 'Export PDF';
+        controls.querySelector('button').innerText = originalButtonText;
+        container.classList.remove('pdf-export-mode');
     }
 }
