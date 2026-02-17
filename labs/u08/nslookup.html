@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using nslookup</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Using nslookup</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Students will practice performing reconnaissance using the nslookup tool.
+            </div>
+            <strong>Background:</strong><br>
+            DNS (Domain Name Server) translates domain names into IP addresses. <code>nslookup</code> is a command-line
+            tool to query DNS servers for:
+            <ul>
+                <li>IP addresses</li>
+                <li>Mail servers (MX)</li>
+                <li>Associated organizations (SOA)</li>
+                <li>Extra text data (TXT)</li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Interactive Mode</h2>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In the terminal, type <code>nslookup</code>. Notice the
+                        <code>&gt;</code> prompt.</label></li>
+                <li><label><input type="checkbox"> Type <code>brookdalecc.edu</code> and observe findings.</label></li>
+                <li><label><input type="checkbox"> Type <code>netdevgroup.com</code>.</label></li>
+                <li><label><input type="checkbox"> Now type a website of your choosing (e.g.
+                        <code>www.myschool.org</code>).</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>Your Chosen Website Name:</label>
+                <input type="text">
+                <label>IP Address(es) Found:</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your interactive nslookup session</p>
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: DNS Record Types</h2>
+            <div class="instruction-text">
+                Common Record Types: <strong>A</strong> (IPv4), <strong>AAAA</strong> (IPv6), <strong>TXT</strong>
+                (Text), <strong>MX</strong> (Mail), <strong>SOA</strong> (Administrator).
+            </div>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Enter: <code>set type=AAAA</code></label></li>
+                <li><label><input type="checkbox"> Enter: <code>google.com</code></label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>What is the IPv6 address provided for Google?</label>
+                <input type="text">
+            </div>
+
+            <div class="question-block">
+                <label>Identify another website domain name that has an IPv6 address:</label>
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="IPv6 Address">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> Enter: <code>set type=A</code></label></li>
+                <li><label><input type="checkbox"> Enter: <code>google.com</code></label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>What is the IPv4 address provided for Google?</label>
+                <input type="text">
+            </div>
+
+            <div class="instruction-text">
+                Type <code>exit</code> to leave Interactive Mode.
+            </div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="section">
+            <h2>Part 3: Non-Interactive Mode</h2>
+            <div class="instruction-text">
+                Run these commands directly in the terminal.
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> <code>nslookup google.com</code></label></li>
+            </ol>
+            <div class="question-block">
+                <label>Is the IPv6 result the same as Interactive Mode?</label>
+                <input type="text">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> <code>nslookup -type=MX shazam.com</code></label></li>
+            </ol>
+            <div class="question-block">
+                <label>What kind of email do you think is used (Look at the mail exchanger)?</label>
+                <input type="text">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> <code>nslookup -type=SOA whoismrrobot.com</code></label></li>
+            </ol>
+            <div class="question-block">
+                <label>What is the parent organization for this domain?</label>
+                <input type="text">
+            </div>
+
+            <ol class="checklist">
+                <li><label><input type="checkbox"> <code>nslookup -type=TXT dns.google</code></label></li>
+            </ol>
+            <div class="question-block">
+                <label>What URL is seen in the results?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p><strong>Bonus:</strong> Go to that URL and paste a screenshot of the cartoon here.</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

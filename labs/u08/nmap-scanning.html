@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap & Zenmap Scanning</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Nmap & Zenmap Scanning</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Understand how scanning tools can be used to identify network devices and configuration.
+            </div>
+            <h3>Setup:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Launch Kali, Windows 7, and Server 2022 VMs.</label></li>
+                <li><label><input type="checkbox"> <strong>Windows 7:</strong> Turn off "Windows Firewall" for
+                        Home/Public networks.</label></li>
+                <li><label><input type="checkbox"> <strong>Server 2022:</strong> Turn off "Windows Defender Firewall"
+                        for Home/Public networks (accessed via Search).</label></li>
+            </ul>
+        </div>
+
+        <!-- Part 1 -->
+        <div class="section">
+            <h2>Part 1: Scanning in Nmap CLI</h2>
+            <h3>1. Record IP Addresses (Click "Other Machines"):</h3>
+            <div class="question-block">
+                <label>Kali IP:</label> <input type="text">
+                <label>Windows 7 IP:</label> <input type="text">
+                <label>Server 2022 IP:</label> <input type="text">
+            </div>
+
+            <h3>2. Nmap Options:</h3>
+            <div class="instruction-text">
+                Type <code>nmap</code> in Kali terminal to see usage info. Describe these options:
+            </div>
+            <div class="question-block">
+                <label><code>-sn</code>:</label> <input type="text" placeholder="Description">
+                <label><code>-sT</code>:</label> <input type="text" placeholder="Description">
+                <label><code>-sV</code>:</label> <input type="text" placeholder="Description">
+                <label><code>-o</code>:</label> <input type="text" placeholder="Description">
+                <label><code>-v</code>:</label> <input type="text" placeholder="Description">
+            </div>
+
+            <h3>3. Interaction:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> <strong>Port Scan:</strong>
+                        <code>nmap -sT [Windows 7 IP]</code></label></li>
+                <li><label><input type="checkbox"> Perform the same port scan for Server 2022.</label></li>
+            </ul>
+
+            <div class="question-block">
+                <label>Which VM has the most open ports?</label>
+                <input type="text">
+                <label>List the number and service for each open port on Server 2022:</label>
+                <textarea rows="3"></textarea>
+            </div>
+
+            <ul class="checklist">
+                <li><label><input type="checkbox"> <strong>OS Detection:</strong>
+                        <code>sudo nmap -v -O --osscan-guess [Windows 7 IP]</code></label></li>
+            </ul>
+            <div class="question-block">
+                <label>Find "Aggressive OS Guesses". What is the first guess?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of your OS Detection scan result</p>
+            </div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="section">
+            <h2>Part 2: Scanning in Zenmap (GUI)</h2>
+            <div class="instruction-text">
+                Zenmap is the GUI version of nmap. It is installed on Server 2022.
+            </div>
+            <ol class="checklist">
+                <li><label><input type="checkbox"> In Server 2022, search "Zen" and open "Nmap-Zenmap GUI".</label></li>
+                <li><label><input type="checkbox"> Target: <strong>[Windows 7 IP]</strong>. Profile: <strong>Intense
+                            Scan</strong>. Click "Scan".</label></li>
+                <li><label><input type="checkbox"> Repeat the Scan using the Kali IP address.</label></li>
+                <li><label><input type="checkbox"> Repeat the Scan using the Server 2022 IP address.</label></li>
+                <li><label><input type="checkbox"> Review the tabs (Host Details, Ports/Hosts) for each.</label></li>
+            </ol>
+
+            <div class="question-block">
+                <label>What OS version is installed on the Kali VM?</label>
+                <input type="text">
+            </div>
+
+            <div class="question-block">
+                <label>Which VM is the most vulnerable? Explain why.</label>
+                <textarea rows="2"></textarea>
+            </div>
+
+            <div class="question-block">
+                <label>How many total ports were found closed on Server 2022?</label>
+                <input type="text">
+            </div>
+
+            <div class="question-block">
+                <label>What is the service and version running on port 22 of the Kali device?</label>
+                <input type="text">
+            </div>
+
+            <div class="question-block">
+                <label><strong>CVE-2017-0055 Analysis:</strong></label>
+                <label>What software is listed in this CVE?</label>
+                <input type="text">
+                <label>What type of vulnerability can be exploited with this software?</label>
+                <input type="text">
+                <label>Which lab device is running this software?</label>
+                <input type="text">
+            </div>
+
+            <div class="image-zone">
+                <p>Paste screenshot of Zenmap Topology or Host Details</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>

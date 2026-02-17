@@ -64,7 +64,35 @@ const UNITS = [
     { id: 5, title: "Data Representation & Cryptography Concepts", subtitle: "Foundational Research", labs: [] },
     { id: 6, title: "Advanced Command Line & Scripting", subtitle: "Foundational Research", labs: [] },
     { id: 7, title: "Networking Fundamentals", subtitle: "Foundational Research", labs: [] },
-    { id: 8, title: "Ethics & Reconnaissance", subtitle: "Foundational Research", labs: [] },
+    {
+        id: 8,
+        title: "Ethics & Reconnaissance",
+        subtitle: "Foundational Research",
+        active: true,
+        labs: [
+            {
+                title: "Recon with WHOIS",
+                id: "7.2.1",
+                url: "labs/u08/recon-whois.html",
+                icon: "search",
+                desc: "Practice performing reconnaissance using the WHOIS tool to gather domain information."
+            },
+            {
+                title: "Using nslookup",
+                id: "7.2.2",
+                url: "labs/u08/nslookup.html",
+                icon: "globe",
+                desc: "Learn to use nslookup interactively and non-interactively to query DNS records."
+            },
+            {
+                title: "Nmap & Zenmap Scanning",
+                id: "7.3.2",
+                url: "labs/u08/nmap-scanning.html",
+                icon: "radar",
+                desc: "Use Nmap and Zenmap to scan networks, identify devices, and detect open ports."
+            }
+        ]
+    },
     {
         id: 9,
         title: "Network Attacks and Penetration Testing",

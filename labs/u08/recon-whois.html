@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recon with WHOIS</title>
+    <link rel="icon" type="image/jpeg" href="../../images/images.jpg">
+    <link rel="stylesheet" href="../../dashboard.css">
+    <link rel="stylesheet" href="../lab.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="../../index.html" class="dashboard-link">&larr; Back to Dashboard</a>
+
+        <header>
+            <div>
+                <h1>Recon with WHOIS</h1>
+                <p style="margin: 5px 0 0; color: var(--secondary);">CYBER.ORG Range Worksheet</p>
+            </div>
+            <img src="../../images/cyber.org_logo2.jpg" alt="Logo" style="height: 40px; opacity: 0.8;">
+        </header>
+
+        <div class="meta-info">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="text" id="date" placeholder="Enter date">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Objective</h2>
+            <div class="instruction-text">
+                Students will practice performing reconnaissance using the WHOIS tool.
+            </div>
+            <p class="note"><strong>Note:</strong> Your group will share one computer to perform this activity. This
+                exercise is done in groups because if there are too many queries coming from one source (your school),
+                then databases may temporarily block queries.</p>
+
+            <h3>Instructions:</h3>
+            <ul class="checklist">
+                <li><label><input type="checkbox"> Go to CYBER.ORG Range (https://apps.cyber.org)</label></li>
+                <li><label><input type="checkbox"> Click on the Range tab, then click on Launch Kali.</label></li>
+                <li><label><input type="checkbox"> Once the status changes to booted, click Open.</label></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Domain Reconnaissance</h2>
+            <div class="instruction-text">
+                You will do recon on these 7 domain names:<br>
+                <strong>Aglaw.us, Aptera.us, Evolo.us, Quiescent.us, Replaygames.us, Wctf.us, Zonix.us</strong><br><br>
+
+                <strong>For each domain:</strong><br>
+                1. Visit the domain website to quickly determine the type of content.<br>
+                2. Do a Whois lookup to gather the name and address of the Registrant Contact.<br>
+                3. Look up the address with Google Maps/Streetview.<br>
+                4. Fill in the info below.
+            </div>
+
+            <!-- Domain 1 -->
+            <div class="question-block">
+                <h3>Domain 1: Aglaw.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Aglaw.us</p>
+            </div>
+
+            <!-- Domain 2 -->
+            <div class="question-block">
+                <h3>Domain 2: Aptera.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Aptera.us</p>
+            </div>
+
+            <!-- Domain 3 -->
+            <div class="question-block">
+                <h3>Domain 3: Evolo.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Evolo.us</p>
+            </div>
+
+            <!-- Domain 4 -->
+            <div class="question-block">
+                <h3>Domain 4: Quiescent.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Quiescent.us</p>
+            </div>
+
+            <!-- Domain 5 -->
+            <div class="question-block">
+                <h3>Domain 5: Replaygames.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Replaygames.us</p>
+            </div>
+
+            <!-- Domain 6 -->
+            <div class="question-block">
+                <h3>Domain 6: Wctf.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Wctf.us</p>
+            </div>
+
+            <!-- Domain 7 -->
+            <div class="question-block">
+                <h3>Domain 7: Zonix.us</h3>
+                <label>Registrant Contact:</label>
+                <input type="text" placeholder="Name">
+                <label>Address:</label>
+                <input type="text" placeholder="Address">
+            </div>
+            <div class="image-zone">
+                <p>Paste screenshot of Google Maps location for Zonix.us</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Closing Analysis</h2>
+            <div class="instruction-text">
+                A target is most vulnerable to an attack (like swatting) when the attacker can find lots of recon
+                information. In this exercise there are significant differences in the amount of information found for
+                each domain simply by looking at the web site, a Whois lookup and Google maps.
+            </div>
+
+            <div class="question-block">
+                <label>Question: Why isn’t there a picture in Google maps for some domains?</label>
+                <textarea rows="3" placeholder="Explain..."></textarea>
+            </div>
+
+            <div class="question-block">
+                <label><strong>Final Question:</strong> Which of the domains is most at risk if someone wanted to swat
+                    them? Explain your reasoning.</label>
+                <textarea rows="4" placeholder="Explain your reasoning..."></textarea>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button onclick="downloadPDF()">Export PDF</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../lab.js"></script>
+</body>
+
+</html>
