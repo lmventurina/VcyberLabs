@@ -423,9 +423,9 @@ textarea:focus {
     padding: 0 !important;
     margin: 0 !important;
     box-shadow: none !important;
-    max-width: 715px !important;
-    /* A4 (210mm) - 20mm margins = 190mm ~= 718px */
-    width: 715px !important;
+    max-width: 750px !important;
+    /* Reduced for safety: 7.8in printable area */
+    width: 750px !important;
     border-radius: 0 !important;
 }
 

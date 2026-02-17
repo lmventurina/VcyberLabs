@@ -135,11 +135,11 @@ async function downloadPDF() {
 
     // Configure options
     const opt = {
-        margin: [10, 10, 10, 10], // 10mm margins
+        margin: 0.15,
         filename: document.title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
 
     // Hide controls for capture
