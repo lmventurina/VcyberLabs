@@ -59,93 +59,93 @@ function removeImage() {
 const UNITS = [
     {
         id: 1,
-        title: "Introduction to Cybersecurity & Authentication",
-        subtitle: "Foundational Research",
+        title: "The CIA Triad & Password Security",
+        subtitle: "Confidentiality • Integrity • Hashing",
         active: true,
         labs: [
             {
-                title: "CIA Triad & Authentication",
-                id: "1.1.1",
+                title: "The CIA Triad",
+                id: "1.2.2",
                 url: "labs/u01/cia-triad.html",
                 icon: "shield",
-                desc: "Understand Confidentiality, Integrity, and Availability and the three factors of authentication."
+                desc: "Explore the three pillars of information security: Confidentiality, Integrity, and Availability."
             },
             {
                 title: "Password Security",
-                id: "1.2.1",
+                id: "1.3.1",
                 url: "labs/u01/password-security.html",
-                icon: "lock",
-                desc: "Analyze password strength, entropy, and the importance of Multi-Factor Authentication."
+                icon: "key",
+                desc: "Test password strength and learn about hashing, salting, and entropy."
             }
         ]
     },
     {
         id: 2,
-        title: "Malicious Code & Secure Environment",
-        subtitle: "Foundational Research",
+        title: "Malicious Code & Sys Admin",
+        subtitle: "CLI Basics • Cracking • VM Access",
         active: true,
         labs: [
             {
-                title: "Online VM Access",
-                id: "1.3.1",
-                url: "labs/u02/vm-access-setup.html",
-                icon: "monitor",
-                desc: "Setup and connect to the CYBER.ORG Range Virtual Machines."
-            },
-            {
-                title: "Terminus (Part 1)",
-                id: "1.3.2",
+                title: "Terminus Game (Pt 1)",
+                id: "2.1.2",
                 url: "labs/u02/terminus-part1.html",
-                icon: "map",
-                desc: "Explore basic Linux commands in the Terminus adventure game."
+                icon: "gamepad-2",
+                desc: "Learn basic shell commands through an interactive text-based adventure."
             },
             {
-                title: "Password Cracking (JtR)",
-                id: "1.3.2b",
+                title: "Password Cracking with JtR",
+                id: "2.2.3",
                 url: "labs/u02/password-cracking-jtr.html",
-                icon: "key",
-                desc: "Use John the Ripper to crack weak passwords."
+                icon: "unlock",
+                desc: "Use John the Ripper to crack password hashes and understand brute-force attacks."
             },
             {
                 title: "Windows CLI Basics",
-                id: "1.3.2c",
+                id: "2.3.1",
                 url: "labs/u02/windows-cli-basics.html",
-                icon: "app-window",
-                desc: "Introduction to Windows Command Prompt commands."
+                icon: "terminal",
+                desc: "Navigate the Windows Command Prompt and perform system administration tasks."
             },
             {
                 title: "Linux Command Reference",
-                id: "1.3.2d",
+                id: "2.3.2",
                 url: "labs/u02/linux-command-reference.html",
-                icon: "list",
-                desc: "Reference cheat sheet for essential Linux commands."
+                icon: "file-code",
+                desc: "A comprehensive guide to essential Linux commands for file management and system control."
+            },
+            {
+                title: "Accessing the VM",
+                id: "2.3.3",
+                url: "labs/u02/vm-access-setup.html",
+                icon: "monitor",
+                desc: "Setup and configure access to the virtual lab environment."
             }
         ]
     },
     {
         id: 3,
-        title: "The Human Element Social Engineering & OSINT",
-        subtitle: "Foundational Research",
+        title: "Social Engineering",
+        subtitle: "Phishing • SET Tool • Cloning",
         active: true,
         labs: [
             {
                 title: "Social Engineering Toolkit",
-                id: "2.1.1",
+                id: "3.2.3",
                 url: "labs/u03/social-engineering-toolkit.html",
-                icon: "user-cog",
-                desc: "Simulate a phishing attack using the Social Engineering Toolkit (SET) to harvest credentials."
+                icon: "users",
+                desc: "Use SET to simulate credential harvesting attacks and site cloning."
             }
         ]
     },
     {
         id: 4,
-        title: "System Security & Hardening",
-        subtitle: "Foundational Research",
+        title: "System Security & Analysis",
+        subtitle: "Vuln Scanning • Mitigation • MBSA",
         active: true,
         labs: [
             {
                 title: "MBSA Vulnerability Scan",
-                id: "3.1.2",
+                id: "4.1.2",
                 url: "labs/u04/mbsa-scan.html",
                 icon: "shield-check",
                 desc: "Scan Windows 7 with Microsoft Baseline Security Analyzer and mitigate vulnerabilities."
@@ -155,7 +155,7 @@ const UNITS = [
     {
         id: 5,
         title: "Data Representation & Cryptography Concepts",
-        subtitle: "Foundational Research",
+        subtitle: "Encoding • Steganography • Analysis",
         active: true,
         labs: [
             {
@@ -177,7 +177,7 @@ const UNITS = [
     {
         id: 6,
         title: "Advanced Command Line & Scripting",
-        subtitle: "Foundational Research",
+        subtitle: "Grep • Scripting • Piping • Regex",
         active: true,
         labs: [
             {
@@ -220,7 +220,7 @@ const UNITS = [
     {
         id: 7,
         title: "Networking Fundamentals",
-        subtitle: "Foundational Research",
+        subtitle: "Hardware • Wireshark • PCAP",
         active: true,
         labs: [
             {
@@ -249,7 +249,7 @@ const UNITS = [
     {
         id: 8,
         title: "Ethics & Reconnaissance",
-        subtitle: "Foundational Research",
+        subtitle: "WHOIS • DNS • Nmap Scanning",
         active: true,
         labs: [
             {
@@ -278,7 +278,7 @@ const UNITS = [
     {
         id: 9,
         title: "Network Attacks and Penetration Testing",
-        subtitle: "Active Lab Sequence",
+        subtitle: "Spoofing • Metasploit • Mimikatz",
         active: true,
         labs: [
             {
@@ -328,7 +328,7 @@ const UNITS = [
     {
         id: 10,
         title: "Web Application Security",
-        subtitle: "Using OWASP Juice Shop",
+        subtitle: "SQL Injection • XSS • Cookies",
         active: true,
         labs: [
             {
@@ -371,7 +371,7 @@ const UNITS = [
     {
         id: 11,
         title: "Applied Cryptography & Secure Communications",
-        subtitle: "Tier 2 Research",
+        subtitle: "SSL Decryption • PCAP Analysis",
         active: true,
         labs: [
             {
