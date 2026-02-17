@@ -1,9 +1,12 @@
 :root {
-    --primary: #0056b3;
-    --secondary: #6c757d;
-    --bg: #f8f9fa;
+    --primary: #385CC3;
+    /* Deep Blue */
+    --secondary: #292B27;
+    /* Dark Gray */
+    --bg: #E0D9CF;
+    /* Beige */
     --surface: #ffffff;
-    --border: #dee2e6;
+    --border: #ced4da;
 }
 
 body {

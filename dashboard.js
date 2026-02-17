@@ -125,42 +125,49 @@ function renderUnits() {
     if (!grid) return;
 
     grid.innerHTML = UNITS.map(unit => `
-        <div class="unit-card glass-panel p-8 ${unit.active ? 'border-sky-500/20 ring-1 ring-sky-500/10' : 'opacity-40 hover:opacity-60 transition-opacity'} flex flex-col justify-between">
-            <div class="unit-badge ${unit.active ? '!text-sky-400 !border-sky-500/40' : ''}">UNIT ${String(unit.id).padStart(2, '0')}</div>
+        <div class="unit-card glass-panel p-8 ${unit.active ? 'border-[#023047]/20 ring-1 ring-[#023047]/10' : 'opacity-40 hover:opacity-60 transition-opacity'} flex flex-col justify-between">
+            <div class="unit-badge ${unit.active ? '!text-[#023047] !border-[#023047]/40 !bg-[#8ecae6]' : ''}">UNIT ${String(unit.id).padStart(2, '0')}</div>
             
-            <div class="mb-6 cursor-pointer" onclick="toggleUnit(${unit.id})">
-                <div class="flex justify-between items-start">
+            <button 
+                id="unit-toggle-${unit.id}"
+                type="button"
+                class="w-full text-left mb-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#fb8500] rounded-lg p-2 -ml-2 transition-colors hover:bg-[#023047]/5" 
+                onclick="toggleUnit(${unit.id})"
+                aria-expanded="false"
+                aria-controls="labs-container-${unit.id}"
+            >
+                <div class="flex justify-between items-start pointer-events-none">
                     <div>
-                        <h3 class="text-xl font-bold ${unit.active ? 'text-white' : 'text-slate-300'} mb-2">${unit.title}</h3>
-                        <p class="text-[10px] ${unit.active ? 'text-sky-500 font-mono' : 'text-slate-500'} uppercase tracking-widest pb-2">${unit.subtitle}</p>
+                        <h3 class="text-xl font-bold ${unit.active ? 'text-[#023047]' : 'text-slate-500'} mb-2">${unit.title}</h3>
+                        <p class="text-[10px] ${unit.active ? 'text-[#219ebc] font-mono' : 'text-slate-500'} uppercase tracking-widest pb-2">${unit.subtitle}</p>
                     </div>
-                    <i data-lucide="chevron-down" id="chevron-${unit.id}" class="w-5 h-5 text-slate-500 transition-transform duration-300 ${unit.active ? 'rotate-180' : ''}"></i>
+                    <i data-lucide="chevron-down" id="chevron-${unit.id}" class="w-5 h-5 text-slate-500 transition-transform duration-300"></i>
                 </div>
-            </div>
+            </button>
             
-            <div id="labs-container-${unit.id}" class="labs-container space-y-4 ${unit.active ? 'expanded' : ''}">
-                <div class="pt-4 border-t border-white/5">
+            <div id="labs-container-${unit.id}" class="labs-container space-y-4">
+                <div class="pt-4 border-t border-[#023047]/10">
                 ${unit.labs.length > 0 ? unit.labs.map(lab => `
-                    <a href="${lab.url}" class="lab-card group bg-sky-500/5 border border-sky-500/10 p-5 rounded-2xl block relative overflow-hidden mb-4 last:mb-0">
-                        <i data-lucide="${lab.icon}" class="absolute -bottom-2 -right-2 w-16 h-16 text-red-500/10 group-hover:text-red-500/20 transition-colors"></i>
+                    <a href="${lab.url}" class="lab-card group bg-white/60 border border-[#023047]/10 p-5 rounded-2xl block relative overflow-hidden mb-4 last:mb-0 focus:outline-none focus:ring-2 focus:ring-[#fb8500] focus:ring-offset-2 focus:ring-offset-[#CFCFCF]">
+                        <i data-lucide="${lab.icon}" class="absolute -bottom-2 -right-2 w-16 h-16 text-[#023047]/5 group-hover:text-[#023047]/10 transition-colors"></i>
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center border border-red-500/30">
-                                <i data-lucide="${lab.icon}" class="text-red-400 w-4 h-4"></i>
+                            <div class="w-8 h-8 bg-[#fb8500]/20 rounded-lg flex items-center justify-center border border-[#fb8500]/30">
+                                <i data-lucide="${lab.icon}" class="text-[#fb8500] w-4 h-4"></i>
                             </div>
-                            <span class="text-[9px] font-mono text-red-500/80 uppercase tracking-widest">Lab ${lab.id}</span>
+                            <span class="text-[9px] font-mono text-[#fb8500]/80 uppercase tracking-widest">Lab ${lab.id}</span>
                         </div>
-                        <h4 class="text-sm font-bold text-white group-hover:text-sky-400 transition-colors">${lab.title}</h4>
+                        <h4 class="text-sm font-bold text-[#023047] group-hover:text-[#219ebc] transition-colors">${lab.title}</h4>
                         <div class="mt-4 flex items-center justify-between">
                             <span class="text-[8px] font-black text-slate-500 uppercase tracking-widest flex items-center gap-1.5">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> ONLINE
                             </span>
-                            <i data-lucide="chevron-right" class="w-4 h-4 text-sky-400"></i>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-[#023047]"></i>
                         </div>
                     </a>
                 `).join('') : `
-                    <div class="flex items-center justify-center py-10 border-2 border-dashed border-white/5 rounded-xl bg-black/20">
+                    <div class="flex items-center justify-center py-10 border-2 border-dashed border-[#023047]/10 rounded-xl bg-black/5">
                         <div class="text-center">
-                            <i data-lucide="lock" class="w-8 h-8 text-slate-700 mx-auto mb-3"></i>
+                            <i data-lucide="lock" class="w-8 h-8 text-slate-600 mx-auto mb-3"></i>
                             <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest">${unit.id < 9 ? 'In Development' : 'Reserved Space'}</p>
                         </div>
                     </div>
@@ -179,9 +186,16 @@ function renderUnits() {
 function toggleUnit(unitId) {
     const container = document.getElementById(`labs-container-${unitId}`);
     const chevron = document.getElementById(`chevron-${unitId}`);
+    const button = document.getElementById(`unit-toggle-${unitId}`);
 
     if (container) {
         container.classList.toggle('expanded');
+
+        // Update ARIA state
+        if (button) {
+            const isExpanded = container.classList.contains('expanded');
+            button.setAttribute('aria-expanded', isExpanded);
+        }
     }
 
     if (chevron) {

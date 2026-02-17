@@ -1,17 +1,23 @@
 :root {
-    --bg-color: #020617;
-    --card-bg: rgba(15, 23, 42, 0.8);
-    --accent-color: #38bdf8;
-    --accent-glow: rgba(56, 189, 248, 0.3);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --border-color: rgba(51, 65, 85, 0.5);
+    --bg-color: #023047;
+    /* Prussian Blue */
+    --card-bg: rgba(207, 207, 207, 0.9);
+    --accent-color: #8ecae6;
+    /* Light Blue */
+    --accent-glow: rgba(142, 202, 230, 0.3);
+    --text-primary: #023047;
+    /* Prussian Blue Text for Light Card */
+    --text-secondary: #219ebc;
+    /* Blue Green */
+    --border-color: rgba(2, 48, 71, 0.1);
     --success: #22c55e;
-    --danger: #f43f5e;
-    --danger-glow: rgba(244, 63, 94, 0.2);
-    --navy-900: #0f172a;
-    --glass-bg: rgba(15, 23, 42, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.05);
+    --danger: #fb8500;
+    /* Orange */
+    --danger-glow: rgba(251, 133, 0, 0.2);
+    --navy-900: #219ebc;
+    /* Blue Green */
+    --glass-bg: rgba(207, 207, 207, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.5);
 }
 
 * {
