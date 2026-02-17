@@ -1,11 +1,31 @@
-// Logic to handle image pasting in specific zones
+// Logic to handle image pasting and uploading in specific zones
 document.addEventListener('DOMContentLoaded', () => {
     const imageZones = document.querySelectorAll('.image-zone');
 
     imageZones.forEach(zone => {
+        // Create hidden file input
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.style.display = 'none';
+        zone.appendChild(input);
+
+        // Handle Click (Upload)
+        zone.addEventListener('click', () => {
+            input.click();
+        });
+
+        // Handle File Selection
+        input.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                displayImage(zone, file);
+            }
+        });
+
+        // Handle Paste
         zone.addEventListener('paste', (e) => {
             e.preventDefault();
-
             const items = (e.clipboardData || e.originalEvent.clipboardData).items;
             let blob = null;
 
@@ -17,33 +37,53 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (blob) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    // Clear current content
-                    zone.innerHTML = '';
-                    zone.classList.add('has-image');
-
-                    // Create image element
-                    const img = document.createElement('img');
-                    img.src = event.target.result;
-                    zone.appendChild(img);
-                };
-                reader.readAsDataURL(blob);
+                displayImage(zone, blob);
             } else {
                 alert("No image found in clipboard. Please take a screenshot first, then click the box and press Ctrl+V.");
             }
         });
 
-        // Focus styling assistance
-        zone.addEventListener('focus', () => {
+        // Handle Drag and Drop
+        zone.addEventListener('dragover', (e) => {
+            e.preventDefault();
             zone.style.borderColor = '#0056b3';
+            zone.style.backgroundColor = '#e7f5ff';
         });
-        zone.addEventListener('blur', () => {
-            if (!zone.classList.contains('has-image')) {
-                zone.style.borderColor = '#adb5bd';
+
+        zone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            zone.style.borderColor = '#adb5bd';
+            zone.style.backgroundColor = '#f8f9fa';
+        });
+
+        zone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            zone.style.borderColor = '#adb5bd';
+            zone.style.backgroundColor = '#f8f9fa';
+
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                displayImage(zone, e.dataTransfer.files[0]);
             }
         });
     });
+
+    function displayImage(zone, file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            // Keep the input definition but remove text/other content
+            const input = zone.querySelector('input[type="file"]');
+            zone.innerHTML = '';
+            if (input) zone.appendChild(input); // Re-append input
+
+            zone.classList.add('has-image');
+
+            // Create image element
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            zone.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+    }
 });
 
 // PDF Export Functionality
