@@ -84,6 +84,77 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         reader.readAsDataURL(file);
     }
+
+    // --- Local Storage Saving ---
+    function saveProgress() {
+        const inputs = document.querySelectorAll('input, textarea, select');
+        const data = {};
+
+        inputs.forEach((input, index) => {
+            // Create a unique key for each input based on its ID or index if ID is missing
+            const key = input.id || `input_${index}`;
+
+            if (input.type === 'checkbox' || input.type === 'radio') {
+                if (input.checked) {
+                    data[key] = input.value;
+                    // For radio buttons sharing a name, we need to save which one is checked
+                    if (input.name) {
+                        data[input.name] = input.value;
+                    }
+                }
+            } else if (input.type !== 'file') { // Don't save files
+                data[key] = input.value;
+            }
+        });
+
+        // Use the page URL as a namespace to separate data for different labs
+        const pageKey = window.location.pathname;
+        localStorage.setItem(pageKey, JSON.stringify(data));
+
+        // Optional: Show a subtle "Saved" indicator (can be implemented later)
+        console.log('Progress saved for', pageKey);
+    }
+
+    function loadProgress() {
+        const pageKey = window.location.pathname;
+        const storedData = localStorage.getItem(pageKey);
+
+        if (storedData) {
+            const data = JSON.parse(storedData);
+            const inputs = document.querySelectorAll('input, textarea, select');
+
+            inputs.forEach((input, index) => {
+                const key = input.id || `input_${index}`;
+
+                if (input.type === 'checkbox') {
+                    if (data[key] === input.value) {
+                        input.checked = true;
+                    }
+                } else if (input.type === 'radio') {
+                    // For radios, check if the saved value for the group name matches this input's value
+                    if (input.name && data[input.name] === input.value) {
+                        input.checked = true;
+                    }
+                } else if (input.type !== 'file') {
+                    if (data[key] !== undefined) {
+                        input.value = data[key];
+                    }
+                }
+            });
+            console.log('Progress loaded for', pageKey);
+        }
+    }
+
+    // Attach event listeners to save on change
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        input.addEventListener('input', saveProgress);
+        input.addEventListener('change', saveProgress);
+    });
+
+    // Load progress on load
+    loadProgress();
+
 });
 
 // PDF Export Functionality
